@@ -1,0 +1,145 @@
+{
+  // --- Font & Editor Appearance ---
+  "editor.fontFamily": "'CommitMono Nerd Font Mono','FiraCode Nerd Font Mono', 'GeistMono Nerd Font Mono','MesloLGS Nerd Font Mono', monospace",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.6,
+  "editor.letterSpacing": -0.4,
+  "editor.fontWeight": "normal",
+  "editor.fontLigatures": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "explicit",
+  "editor.smoothScrolling": true,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.unicodeHighlight.allowedLocales": {
+    "tr": true
+  },
+
+  // --- Modern UI & Productivity ---
+  "editor.stickyScroll.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.renderWhitespace": "selection",
+  "editor.suggestSelection": "first",
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.linkedEditing": true,
+  "editor.autoClosingBrackets": "languageDefined",
+  "workbench.activityBar.location": "top",
+  "workbench.list.smoothScrolling": true,
+  "workbench.iconTheme": "symbols",
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreview": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.sideBar.location": "left",
+  "workbench.statusBar.visible": true,
+  "workbench.tree.indent": 16,
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.editor.defaultBinaryEditor": "default",
+
+  // --- File Handling & Formatting ---
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+
+  // --- Terminal ---
+  "terminal.integrated.fontFamily": "'MesloLGS Nerd Font Mono', 'FiraCode Nerd Font Mono', monospace",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.fontWeightBold": "bold",
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.letterSpacing": 0,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.initialHint": false,
+  "terminal.external.osxExec": "Terminal.app",
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.persistentSessionReviveProcess": "onExit",
+  "terminal.integrated.defaultProfile.osx": "fish",
+  "terminal.integrated.profiles.osx": {
+    "bash": { "path": "bash", "args": ["-l"], "icon": "terminal-bash" },
+    "zsh": { "path": "zsh", "args": ["-l"] },
+    "fish": { "path": "/opt/homebrew/bin/fish", "args": ["-l"] },
+    "pwsh": { "path": "pwsh", "icon": "terminal-powershell" }
+  },
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "terminal.integrated.profiles.linux": {
+    "fish": { "path": "/usr/bin/fish", "args": ["-l"] }
+  },
+  "terminal.integrated.allowedLinkSchemes": [
+    "file", "http", "https", "mailto", "vscode", "vscode-insiders", "docker-desktop"
+  ],
+
+  // --- Git ---
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.promptToSaveFilesBeforeCommit": "always",
+  "git.autoStash": true,
+  "git.openRepositoryInParentFolders": "always",
+
+  // --- Languages (JS/TS, Python, .NET) ---
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "javascript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "python.createEnvironment.trigger": "off",
+  "python.languageServer": "Default",
+  "dotnet.autoDetect": "on",
+  "dotnet.codeLens.enableReferencesCodeLens": true,
+  "dotnet.formatting.organizeImportsOnFormat": true,
+  "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "openFiles",
+  "csharp.format.enable": true,
+  "csharp.semanticHighlighting.enabled": true,
+  "yaml.schemas": {
+    "file:///Users/burak/.vscode/extensions/docsmsft.docs-yaml-1.0.5/dist/toc.schema.json": "/toc\\.yml/i"
+  },
+  "[markdown]": { "editor.defaultFormatter": "DavidAnson.vscode-markdownlint" },
+  "[jsonc]": { "editor.defaultFormatter": "vscode.json-language-features" },
+
+  // --- Tools & Code Quality ---
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "prettier.semi": true,
+  "prettier.arrowParens": "always",
+  "prettier.endOfLine": "auto",
+  "eslint.enable": true,
+  "eslint.useFlatConfig": true,
+  "eslint.run": "onType",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "sonarlint.focusOnNewCode": true,
+  "sonarlint.automaticAnalysis": true,
+  "sonarlint.disableTelemetry": true,
+  "sonarlint.rules": { "typescript:S7785": { "level": "off" } },
+  "playwright.showTrace": false,
+  "playwright.reuseBrowser": true,
+  "telemetry.telemetryLevel": "off",
+  "redhat.telemetry.enabled": false,
+
+  // --- GitHub Copilot ---
+  "github.copilot.editor.enableCodeActions": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.editor.temporaryContext.enabled": true,
+  "github.copilot.chat.inlineChat.holdToSpeech": true,
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    { "text": "Format MUST always be: <type>(<scope>): <description>" },
+    { "text": "Scope is MANDATORY for every commit, even for simple changes." },
+    { "text": "NEVER include a body or footer. ONLY generate a single line." },
+    { "text": "NEVER include breaking change indicators or descriptions." },
+    { "text": "Valid types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert" },
+    { "text": "Subject: Max 50 chars, imperative mood, no period, all lowercase except proper nouns" }
+  ],
+  "chat.agent.maxRequests": 100,
+  "chat.mcp.access": "all",
+  "chat.mcp.gallery.enabled": true
+}

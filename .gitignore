@@ -1,0 +1,9 @@
+.DS_Store
+*.env
+*.secret
+*.pem
+*.key
+.secrets.env
+.idea/
+.vscode/
+node_modules/

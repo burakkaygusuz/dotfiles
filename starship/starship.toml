@@ -1,0 +1,120 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$docker_context\
+$package\
+$nodejs\
+$bun\
+$dotnet\
+$python\
+$rust\
+$golang\
+$terraform\
+$aws\
+$gcloud\
+$kubernetes\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = false
+
+[directory]
+truncation_length = 1
+style = 'bold cyan'
+format = '[$path]($style)[$read_only]($read_only_style) '
+
+[character]
+success_symbol = '[➜](bold green) '
+error_symbol = '[✘](bold red) '
+vicmd_symbol = '[V](bold yellow) '
+
+[git_branch]
+symbol = ' '
+style = 'bold purple'
+format = 'on [$symbol$branch]($style) '
+
+[git_status]
+style = 'bold red'
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = '='
+ahead = '⇡'
+behind = '⇣'
+diverged = '⇕'
+up_to_date = ''
+untracked = '?'
+modified = '!'
+staged = '+'
+renamed = '»'
+deleted = '✘'
+
+[cmd_duration]
+min_time = 3000
+format = 'took [$duration]($style) '
+style = 'dimmed yellow'
+
+[nodejs]
+symbol = ' '
+format = 'via [$symbol($version )]($style)'
+style = 'bold green'
+detect_files = []
+detect_folders = ['node_modules']
+
+[bun]
+symbol = ' '
+format = 'via [$symbol($version )]($style)'
+style = 'bold 201'
+
+[dotnet]
+symbol = '󰪮 '
+format = 'via [$symbol($version )]($style)'
+style = 'bold blue'
+detect_extensions = ['csproj', 'sln', 'slnx', 'fsproj', 'vbproj']
+detect_files = ['global.json', 'project.json', 'Directory.Build.props', 'Directory.Build.targets', 'Packages.props']
+
+[python]
+symbol = ' '
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = 'bold yellow'
+
+[rust]
+symbol = '󱘗 '
+format = 'via [$symbol($version )]($style)'
+style = 'bold orange'
+
+[golang]
+symbol = ' '
+format = 'via [$symbol($version )]($style)'
+style = 'bold cyan'
+
+[docker_context]
+symbol = ' '
+format = 'on [$symbol$context]($style) '
+style = 'bold blue'
+
+[terraform]
+symbol = '󱁢 '
+format = 'via [$symbol$workspace]($style) '
+style = 'bold 105'
+
+[kubernetes]
+symbol = '☸ '
+format = 'at [$symbol$context( \($namespace\))]($style) '
+style = 'cyan'
+
+[aws]
+symbol = ' '
+format = 'on [$symbol$profile]($style) '
+style = 'bold yellow'
+
+[gcloud]
+symbol = ' '
+format = 'on [$symbol$project]($style) '
+style = 'bold blue'
+
+[status]
+disabled = false
+format = '[$symbol $exit_code]($style) '
+symbol = '🔴'
+style = 'bold red'

@@ -1,0 +1,51 @@
+[user]
+	name = Burak Kaygusuz
+	email = burakkaygusuz@outlook.com
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[gui]
+	fontdiff = -family \"GeistMono Nerd Font Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /Users/burak/.gitignore_global
+	editor = code --wait
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	fsmonitor = true
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[rebase]
+	autoStash = true
+[push]
+	autoSetupRemote = true
+	followTags = true
+[diff]
+	tool = vscode
+	algorithm = histogram
+	mnemonicPrefix = true
+	renames = true
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[help]
+	autocorrect = 20
+[color]
+	ui = auto
+[commit]
+	gpgsign = false
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[rerere]
+	enabled = true
+	autoUpdate = true
