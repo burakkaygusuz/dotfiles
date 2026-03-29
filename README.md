@@ -48,4 +48,3 @@ git push
 ```
 
 ---
-*Managed by Gemini CLI*
