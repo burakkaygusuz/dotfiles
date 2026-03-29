@@ -14,7 +14,7 @@ FONTS=(
     "JetBrainsMono"
 )
 
-VERSION="v3.3.0" # Stable Nerd Fonts version
+VERSION="v3.4.0" # Latest Nerd Fonts version
 FONT_DIR="$HOME/Library/Fonts"
 
 echo "Starting Nerd Fonts installation..."
