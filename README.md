@@ -7,6 +7,7 @@ This repository contains my personal configuration files for a streamlined devel
 
 - **Fish Shell**: Modern, user-friendly shell with smart auto-suggestions.
 - **Starship**: Lightning-fast, minimalist, and context-aware prompt.
+- **Ghostty**: High-performance GPU-accelerated terminal emulator.
 - **Git**: Advanced global configuration with professional defaults.
 - **VS Code**: Optimized `settings.json` focused on productivity and clean UI.
 - **Brewfile**: Automated management of all macOS applications and CLI tools.

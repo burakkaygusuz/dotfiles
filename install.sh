@@ -28,26 +28,26 @@ fi
 echo "Creating configuration directories..."
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/ghostty
-mkdir -p "/Users/burak/Library/Application Support/Code/User"
+mkdir -p "$HOME/Library/Application Support/Code/User"
 
 # 4. Create Symbolic Links (Overwrites existing files)
 echo "Linking configuration files..."
 
 # Fish
-ln -sf ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
+ln -sf "$HOME/dotfiles/fish/config.fish" "$HOME/.config/fish/config.fish"
 
 # Starship
-ln -sf ~/dotfiles/starship/starship.toml ~/.config/starship.toml
+ln -sf "$HOME/dotfiles/starship/starship.toml" "$HOME/.config/starship.toml"
 
 # Git
-ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
-ln -sf ~/dotfiles/git/.gitignore_global ~/.gitignore_global
+ln -sf "$HOME/dotfiles/git/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$HOME/dotfiles/git/.gitignore_global" "$HOME/.gitignore_global"
 
-# Ghostty 
-ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config 
+# Ghostty
+ln -sf "$HOME/dotfiles/ghostty/config" "$HOME/.config/ghostty/config"
 
 # VS Code
-ln -sf ~/dotfiles/vscode/settings.json "/Users/burak/Library/Application Support/Code/User/settings.json"
+ln -sf "$HOME/dotfiles/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 
 echo "Installation completed successfully!"
 echo "Note: Please restart your terminal to apply changes."
