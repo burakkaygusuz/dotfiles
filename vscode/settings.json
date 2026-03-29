@@ -128,9 +128,14 @@
 
   // --- GitHub Copilot ---
   "github.copilot.editor.enableCodeActions": true,
+  "github.copilot.editor.enableAutoCompletions": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.chat.editor.temporaryContext.enabled": true,
-  "github.copilot.chat.inlineChat.holdToSpeech": true,
+  "github.copilot.chat.inlineChat.holdToSpeech": false,
+  "github.copilot.chat.terminal.enableChat": true,
+  "github.copilot.chat.search.enabled": true,
+  "github.copilot.chat.codeAnalysis.enabled": true,
+
   "github.copilot.chat.commitMessageGeneration.instructions": [
     { "text": "Format MUST always be: <type>(<scope>): <description>" },
     { "text": "Scope is MANDATORY for every commit, even for simple changes." },
