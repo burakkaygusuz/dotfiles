@@ -1,0 +1,31 @@
+font-family = "BlexMono Nerd Font Mono"
+font-size = 14
+theme = GitHub Dark
+
+font-feature = calt
+font-feature = liga
+font-feature = dlig
+adjust-cell-height = 20%
+adjust-cell-width = -5%
+
+window-padding-x = 20
+window-padding-y = 20
+window-padding-balance = true
+
+background-opacity = 0.85
+background-blur = 20
+macos-titlebar-style = hidden
+
+cursor-style = block
+cursor-style-blink = true
+cursor-opacity = 0.8
+
+copy-on-select = true
+mouse-hide-while-typing = true
+working-directory = /Users/burak
+
+macos-option-as-alt = left
+confirm-close-surface = false
+
+scrollback-limit = 50000
+window-vsync = true

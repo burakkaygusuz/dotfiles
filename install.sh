@@ -43,6 +43,9 @@ ln -sf ~/dotfiles/starship/starship.toml ~/.config/starship.toml
 ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/git/.gitignore_global ~/.gitignore_global
 
+# Ghostty 
+ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config 
+
 # VS Code
 ln -sf ~/dotfiles/vscode/settings.json "/Users/burak/Library/Application Support/Code/User/settings.json"
 
