@@ -88,7 +88,6 @@
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "javascript.suggest.autoImports": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
   "python.createEnvironment.trigger": "off",
   "python.languageServer": "Default",
   "dotnet.autoDetect": "on",
@@ -97,9 +96,6 @@
   "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "openFiles",
   "csharp.format.enable": true,
   "csharp.semanticHighlighting.enabled": true,
-  "yaml.schemas": {
-    "file:///Users/burak/.vscode/extensions/docsmsft.docs-yaml-1.0.5/dist/toc.schema.json": "/toc\\.yml/i"
-  },
   "[markdown]": { "editor.defaultFormatter": "DavidAnson.vscode-markdownlint" },
   "[jsonc]": { "editor.defaultFormatter": "vscode.json-language-features" },
 

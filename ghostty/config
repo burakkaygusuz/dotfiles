@@ -22,7 +22,7 @@ cursor-opacity = 0.8
 
 copy-on-select = true
 mouse-hide-while-typing = true
-working-directory = /Users/burak
+working-directory = home
 
 macos-option-as-alt = left
 confirm-close-surface = false

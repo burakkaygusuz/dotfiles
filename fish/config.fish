@@ -4,12 +4,26 @@
 set -g fish_greeting
 
 # Homebrew Setup (Essential)
-eval (/opt/homebrew/bin/brew shellenv)
+if command -sq brew
+    eval (brew shellenv)
+else
+    for candidate in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew
+        if test -x $candidate
+            eval ($candidate shellenv)
+            break
+        end
+    end
+end
+
+if command -sq brew
+    set -l brew_prefix (brew --prefix)
+    fish_add_path $brew_prefix/opt/node/bin
+    fish_add_path $brew_prefix/opt/curl/bin
+    fish_add_path $brew_prefix/opt/openjdk/bin
+    set -gx JAVA_HOME $brew_prefix/opt/openjdk
+end
 
 # Custom PATHs
-fish_add_path /opt/homebrew/opt/node/bin
-fish_add_path /opt/homebrew/opt/curl/bin
-fish_add_path /opt/homebrew/opt/openjdk/bin
 fish_add_path /opt/homebrew/opt/python@3.14/libexec/bin
 fish_add_path $HOME/.antigravity/antigravity/bin
 fish_add_path $HOME/.local/bin
@@ -18,9 +32,6 @@ fish_add_path $HOME/.local/bin
 set -x DOTNET_ROOT $HOME/.dotnet
 fish_add_path $DOTNET_ROOT
 fish_add_path $DOTNET_ROOT/tools
-
-# Java Home
-set -x JAVA_HOME (/opt/homebrew/bin/brew --prefix)/opt/openjdk
 
 # pnpm
 set -gx PNPM_HOME "$HOME/Library/pnpm"
