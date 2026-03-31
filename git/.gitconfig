@@ -1,6 +1,9 @@
 [user]
 	name = Burak Kaygusuz
-	email = burakkaygusuz@outlook.com
+
+# Keep private identity details out of the public repo.
+[include]
+	path = ~/.gitconfig.local
 
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
@@ -12,7 +15,7 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = /Users/burak/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = code --wait
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	fsmonitor = true
