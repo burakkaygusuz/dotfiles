@@ -14,6 +14,7 @@ $terraform\
 $aws\
 $gcloud\
 $kubernetes\
+$status\
 $cmd_duration\
 $line_break\
 $character"""
@@ -28,7 +29,7 @@ format = '[$path]($style)[$read_only]($read_only_style) '
 [character]
 success_symbol = '[➜](bold green) '
 error_symbol = '[✘](bold red) '
-vicmd_symbol = '[V](bold yellow) '
+vimcmd_symbol = '[V](bold yellow) '
 
 [git_branch]
 symbol = ' '
