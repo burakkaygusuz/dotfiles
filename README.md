@@ -3,6 +3,7 @@
 Professional, minimalist, and high-performance development environment for macOS.
 
 ## 🚀 Overview
+
 This repository contains my personal configuration files for a streamlined developer experience.
 
 - **Fish Shell**: Modern, user-friendly shell with smart auto-suggestions.
@@ -16,18 +17,24 @@ This repository contains my personal configuration files for a streamlined devel
 ## 🛠️ Installation
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/burakkaygusuz/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
 ### 2. Install Packages & Configs
+
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
 
+`install.sh` also tries to make `fish` your default login shell after installation.
+If `fish` is not registered in `/etc/shells`, the script prints the exact commands you need to run.
+
 ### 3. Install Nerd Fonts (Optional)
+
 ```bash
 chmod +x fonts.sh
 ./fonts.sh
@@ -36,11 +43,13 @@ chmod +x fonts.sh
 ## 📦 Maintenance
 
 ### Update Brewfile
+
 ```bash
 brew bundle dump --describe --force --file=~/dotfiles/Brewfile
 ```
 
 ### Sync Changes
+
 ```bash
 cd ~/dotfiles
 git add .
