@@ -1,6 +1,6 @@
 # Dotfiles
 
-Professional, minimalist, and high-performance development environment for macOS.
+Professional, minimalist, and high-performance development environment for Apple Silicon macOS.
 
 ## 🚀 Overview
 
@@ -30,6 +30,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
+This repository targets Apple Silicon Macs only and assumes Homebrew is installed in `/opt/homebrew`.
 `install.sh` also tries to make `fish` your default login shell after installation.
 If `fish` is not registered in `/etc/shells`, the script prints the exact commands you need to run.
 

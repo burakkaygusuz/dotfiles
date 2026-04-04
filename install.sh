@@ -11,17 +11,10 @@ ensure_brew_env() {
     return 0
   fi
 
-  local brew_path
-  for brew_path in \
-    /opt/homebrew/bin/brew \
-    /usr/local/bin/brew \
-    /home/linuxbrew/.linuxbrew/bin/brew
-  do
-    if [ -x "$brew_path" ]; then
-      eval "$("$brew_path" shellenv)"
-      return 0
-    fi
-  done
+  if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    return 0
+  fi
 
   return 1
 }
@@ -37,13 +30,8 @@ link_config() {
 }
 
 current_login_shell() {
-  if [ "$(uname -s)" = "Darwin" ] && command -v dscacheutil >/dev/null 2>&1; then
+  if command -v dscacheutil >/dev/null 2>&1; then
     dscacheutil -q user -a name "$(id -un)" 2>/dev/null | awk '/^shell: / { print $2; exit }'
-    return 0
-  fi
-
-  if command -v getent >/dev/null 2>&1; then
-    getent passwd "$(id -un)" | cut -d: -f7
     return 0
   fi
 
@@ -96,6 +84,16 @@ install_homebrew() {
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
+if [ "$(uname -s)" != "Darwin" ]; then
+  echo "This dotfiles repository supports Apple Silicon macOS only." >&2
+  exit 1
+fi
+
+if [ "$(uname -m)" != "arm64" ]; then
+  echo "This dotfiles repository supports Apple Silicon Macs only." >&2
+  exit 1
+fi
+
 if [ "${DOTFILES_SKIP_BREW:-0}" = "1" ]; then
   echo "DOTFILES_SKIP_BREW=1: skipping Homebrew bootstrap."
 else
@@ -104,10 +102,8 @@ else
     ensure_brew_env
   fi
 
-  if [ -f "$REPO_ROOT/Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
+  if [ -f "$REPO_ROOT/Brewfile" ]; then
     brew bundle --file="$REPO_ROOT/Brewfile"
-  elif [ -f "$REPO_ROOT/Brewfile" ]; then
-    echo "Non-macOS detected: skipping Brewfile bundle."
   fi
 fi
 

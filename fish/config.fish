@@ -6,13 +6,8 @@ set -g fish_greeting
 # Homebrew Setup (Essential)
 if command -sq brew
     eval (brew shellenv)
-else
-    for candidate in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew
-        if test -x $candidate
-            eval ($candidate shellenv)
-            break
-        end
-    end
+else if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
 end
 
 if command -sq brew
