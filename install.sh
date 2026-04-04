@@ -84,12 +84,28 @@ install_homebrew() {
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
+is_apple_silicon() {
+  local machine
+
+  machine="$(uname -m)"
+  if [ "$machine" = "arm64" ]; then
+    return 0
+  fi
+
+  if [ "$machine" = "x86_64" ]; then
+    [ "$(sysctl -in sysctl.proc_translated 2>/dev/null || true)" = "1" ]
+    return $?
+  fi
+
+  return 1
+}
+
 if [ "$(uname -s)" != "Darwin" ]; then
   echo "This dotfiles repository supports Apple Silicon macOS only." >&2
   exit 1
 fi
 
-if [ "$(uname -m)" != "arm64" ]; then
+if ! is_apple_silicon; then
   echo "This dotfiles repository supports Apple Silicon Macs only." >&2
   exit 1
 fi

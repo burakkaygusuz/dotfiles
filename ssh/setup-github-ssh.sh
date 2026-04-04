@@ -59,6 +59,37 @@ key_path="$ssh_dir/$key_name"
 pub_key_path="$key_path.pub"
 include_line="Include ~/.ssh/config.d/*.conf"
 
+ensure_trailing_newline() {
+  local file="$1"
+
+  [ -s "$file" ] || return 0
+
+  if [ -n "$(tail -c 1 "$file")" ]; then
+    printf '\n' >> "$file"
+  fi
+}
+
+ensure_include_at_top() {
+  local file="$1"
+  local line="$2"
+  local tmp_file
+
+  tmp_file="$(mktemp "${TMPDIR:-/tmp}/setup-github-ssh.XXXXXX")"
+  trap 'rm -f "$tmp_file"' RETURN
+
+  ensure_trailing_newline "$file"
+
+  {
+    printf '%s\n' "$line"
+    if [ -s "$file" ]; then
+      awk -v include_line="$line" '$0 != include_line { print }' "$file"
+    fi
+  } > "$tmp_file"
+
+  mv "$tmp_file" "$file"
+  trap - RETURN
+}
+
 mkdir -p "$ssh_dir" "$config_dir"
 chmod 700 "$ssh_dir"
 
@@ -72,9 +103,11 @@ fi
 touch "$main_config"
 chmod 600 "$main_config"
 
-if ! grep -qxF "$include_line" "$main_config"; then
-  printf '%s\n' "$include_line" >> "$main_config"
+if grep -qE '^[[:space:]]*Host[[:space:]]+github\.com([[:space:]]|$)' "$main_config"; then
+  echo "Warning: $main_config already contains a Host github.com entry." >&2
 fi
+
+ensure_include_at_top "$main_config" "$include_line"
 
 cat > "$managed_config" <<EOF
 Host github.com

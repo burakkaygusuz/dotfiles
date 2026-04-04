@@ -34,6 +34,7 @@ chmod +x install.sh
 ```
 
 This repository targets Apple Silicon Macs only and assumes Homebrew is installed in `/opt/homebrew`.
+Prefer running the installer from a native Apple Silicon shell for the most predictable behavior.
 `install.sh` also tries to make `fish` your default login shell after installation.
 If `fish` is not registered in `/etc/shells`, the script prints the exact commands you need to run.
 
@@ -63,6 +64,8 @@ After the script completes:
 pbcopy < ~/.ssh/id_ed25519.pub
 ssh -T git@github.com
 ```
+
+If you already have custom `Host github.com` rules in `~/.ssh/config`, review them after running the script. The bootstrap inserts its managed include first, but conflicting host-specific SSH settings may still need manual cleanup. If any Host github.com rules remain, merge them carefully.
 
 You still need to add the copied public key to your GitHub account before SSH authentication will work.
 
