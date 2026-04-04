@@ -49,6 +49,18 @@ chmod +x fonts.sh
 brew bundle dump --describe --force --file=~/dotfiles/Brewfile
 ```
 
+### Cleanup packages not in Brewfile
+
+```bash
+brew bundle cleanup --file=~/dotfiles/Brewfile --force
+```
+
+### Troubleshooting
+
+```bash
+brew doctor
+```
+
 ### Sync Changes
 
 ```bash

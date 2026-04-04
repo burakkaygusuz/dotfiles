@@ -10,6 +10,11 @@ else if test -x /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
 end
 
+# Homebrew behavior
+set -gx HOMEBREW_NO_ANALYTICS 1
+set -gx HOMEBREW_AUTO_UPDATE_SECS 604800
+set -gx HOMEBREW_NO_ENV_HINTS 1
+
 if command -sq brew
     set -l brew_prefix (brew --prefix)
     fish_add_path $brew_prefix/opt/node/bin

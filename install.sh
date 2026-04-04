@@ -103,7 +103,11 @@ else
   fi
 
   if [ -f "$REPO_ROOT/Brewfile" ]; then
-    brew bundle --file="$REPO_ROOT/Brewfile"
+    if brew bundle check --file="$REPO_ROOT/Brewfile" >/dev/null 2>&1; then
+      echo "Brewfile already satisfied."
+    else
+      brew bundle --file="$REPO_ROOT/Brewfile"
+    fi
   fi
 fi
 

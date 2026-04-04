@@ -1,6 +1,4 @@
-tap "manaflow-ai/cmux"
 tap "oven-sh/bun"
-tap "tw93/tap"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # User-friendly command-line shell for UNIX-like operating systems
@@ -28,7 +26,7 @@ brew "uv"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
 brew "oven-sh/bun/bun"
 # Comprehensive macOS cleanup and application uninstall tool
-brew "tw93/tap/mole"
+brew "mole"
 # Web browser focusing on privacy
 cask "brave-browser"
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
