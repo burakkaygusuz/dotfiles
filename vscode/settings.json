@@ -44,7 +44,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
 
@@ -62,15 +62,14 @@
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.persistentSessionReviveProcess": "onExit",
   "terminal.integrated.defaultProfile.osx": "fish",
+  "terminal.integrated.automationProfile.osx": {
+    "path": "/bin/sh"
+  },
   "terminal.integrated.profiles.osx": {
     "bash": { "path": "bash", "args": ["-l"], "icon": "terminal-bash" },
     "zsh": { "path": "zsh", "args": ["-l"] },
     "fish": { "path": "/opt/homebrew/bin/fish", "args": ["-l"] },
     "pwsh": { "path": "pwsh", "icon": "terminal-powershell" }
-  },
-  "terminal.integrated.defaultProfile.linux": "fish",
-  "terminal.integrated.profiles.linux": {
-    "fish": { "path": "/usr/bin/fish", "args": ["-l"] }
   },
   "terminal.integrated.allowedLinkSchemes": [
     "file", "http", "https", "mailto", "vscode", "vscode-insiders", "docker-desktop"
@@ -86,8 +85,7 @@
 
   // --- Languages (JS/TS, Python, .NET) ---
   "js/ts.updateImportsOnFileMove.enabled": "always",
-  "javascript.suggest.autoImports": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  "js/ts.suggest.autoImports": true,
   "python.createEnvironment.trigger": "off",
   "python.languageServer": "Default",
   "dotnet.autoDetect": "on",
@@ -124,13 +122,8 @@
 
   // --- GitHub Copilot ---
   "github.copilot.editor.enableCodeActions": true,
-  "github.copilot.editor.enableAutoCompletions": true,
   "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.chat.editor.temporaryContext.enabled": true,
-  "github.copilot.chat.inlineChat.holdToSpeech": false,
-  "github.copilot.chat.terminal.enableChat": true,
-  "github.copilot.chat.search.enabled": true,
-  "github.copilot.chat.codeAnalysis.enabled": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
 
   "github.copilot.chat.commitMessageGeneration.instructions": [
     { "text": "Format MUST always be: <type>(<scope>): <description>" },
