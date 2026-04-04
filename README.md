@@ -16,6 +16,9 @@ This repository contains my personal configuration files for a streamlined devel
 
 ## 🛠️ Installation
 
+This repository uses a staged setup flow.
+`./install.sh` handles the core package/config bootstrap, but a complete machine setup may also require the optional font and GitHub SSH steps below.
+
 ### 1. Clone the Repository
 
 ```bash
@@ -23,7 +26,7 @@ git clone https://github.com/burakkaygusuz/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-### 2. Install Packages & Configs
+### 2. Run the Core Bootstrap
 
 ```bash
 chmod +x install.sh
@@ -34,12 +37,42 @@ This repository targets Apple Silicon Macs only and assumes Homebrew is installe
 `install.sh` also tries to make `fish` your default login shell after installation.
 If `fish` is not registered in `/etc/shells`, the script prints the exact commands you need to run.
 
-### 3. Install Nerd Fonts (Optional)
+### 3. Install Nerd Fonts (Recommended)
 
 ```bash
 chmod +x fonts.sh
 ./fonts.sh
 ```
+
+This step installs the Nerd Fonts referenced by the terminal and editor configuration.
+
+### 4. Bootstrap GitHub SSH (Optional)
+
+The SSH bootstrap is intentionally separate from `install.sh`.
+It can create an `ed25519` key if needed, add a managed GitHub host block via `~/.ssh/config.d/github-dotfiles.conf`, and load the key into the macOS keychain without overwriting your existing SSH config.
+The script requires an explicit `--email` argument for the SSH key label.
+
+```bash
+chmod +x ssh/setup-github-ssh.sh
+./ssh/setup-github-ssh.sh --email you@example.com
+```
+
+After the script completes:
+
+```bash
+pbcopy < ~/.ssh/id_ed25519.pub
+ssh -T git@github.com
+```
+
+You still need to add the copied public key to your GitHub account before SSH authentication will work.
+
+### 5. Restart and Verify
+
+After the steps above:
+
+- Restart your terminal session so the default shell and prompt changes are applied cleanly.
+- Open VS Code again if you want the updated terminal/profile settings to take effect.
+- If `install.sh` printed manual `chsh` instructions, run them before considering the setup complete.
 
 ## 📦 Maintenance
 
