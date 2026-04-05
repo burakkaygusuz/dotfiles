@@ -29,8 +29,8 @@ brew "oven-sh/bun/bun"
 brew "mole"
 # Web browser focusing on privacy
 cask "brave-browser"
-# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
-cask "cmux"
+# GPU-accelerated terminal emulator
+cask "ghostty"
 # Web browser
 cask "google-chrome"
 # App to write, plan, collaborate, and get organised
