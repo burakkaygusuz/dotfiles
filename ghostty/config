@@ -15,17 +15,16 @@ window-padding-balance = true
 background-opacity = 0.85
 background-blur = 20
 macos-titlebar-style = hidden
+shell-integration-features = ssh-env
 
 cursor-style = block
 cursor-style-blink = true
 cursor-opacity = 0.8
 
-copy-on-select = true
 mouse-hide-while-typing = true
 working-directory = home
 
 macos-option-as-alt = left
-confirm-close-surface = false
 
 scrollback-limit = 50000
 window-vsync = true
