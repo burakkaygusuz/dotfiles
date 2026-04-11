@@ -25,23 +25,23 @@ key_name="id_ed25519"
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
-    --email)
-      email="${2:-}"
-      shift 2
-      ;;
-    --key-name)
-      key_name="${2:-}"
-      shift 2
-      ;;
-    -h|--help)
-      usage
-      exit 0
-      ;;
-    *)
-      echo "Unknown argument: $1" >&2
-      usage >&2
-      exit 1
-      ;;
+  --email)
+    email="${2:-}"
+    shift 2
+    ;;
+  --key-name)
+    key_name="${2:-}"
+    shift 2
+    ;;
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  *)
+    echo "Unknown argument: $1" >&2
+    usage >&2
+    exit 1
+    ;;
   esac
 done
 
@@ -65,7 +65,7 @@ ensure_trailing_newline() {
   [ -s "$file" ] || return 0
 
   if [ -n "$(tail -c 1 "$file")" ]; then
-    printf '\n' >> "$file"
+    printf '\n' >>"$file"
   fi
 }
 
@@ -84,7 +84,7 @@ ensure_include_at_top() {
     if [ -s "$file" ]; then
       awk -v include_line="$line" '$0 != include_line { print }' "$file"
     fi
-  } > "$tmp_file"
+  } >"$tmp_file"
 
   mv "$tmp_file" "$file"
   trap - RETURN
@@ -109,7 +109,7 @@ fi
 
 ensure_include_at_top "$main_config" "$include_line"
 
-cat > "$managed_config" <<EOF
+cat >"$managed_config" <<EOF
 Host github.com
   IgnoreUnknown UseKeychain
   AddKeysToAgent yes

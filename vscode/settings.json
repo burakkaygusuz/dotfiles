@@ -95,6 +95,7 @@
   "csharp.format.enable": true,
   "csharp.semanticHighlighting.enabled": true,
   "[markdown]": { "editor.defaultFormatter": "DavidAnson.vscode-markdownlint" },
+  "[shellscript]": { "editor.defaultFormatter": "mkhl.shfmt" },
   "[jsonc]": { "editor.defaultFormatter": "vscode.json-language-features" },
 
   // --- Tools & Code Quality ---

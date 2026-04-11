@@ -21,6 +21,8 @@ brew "node"
 brew "pipx"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Autoformat shell script source code
+brew "shfmt"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
@@ -60,6 +62,7 @@ vscode "github.copilot-chat"
 vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
 vscode "jetbrains.resharper-code"
+vscode "mkhl.shfmt"
 vscode "meta.pyrefly"
 vscode "miguelsolorio.fluent-icons"
 vscode "miguelsolorio.symbols"
