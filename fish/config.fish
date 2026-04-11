@@ -33,13 +33,6 @@ set -x DOTNET_ROOT $HOME/.dotnet
 fish_add_path $DOTNET_ROOT
 fish_add_path $DOTNET_ROOT/tools
 
-# pnpm
-set -gx PNPM_HOME "$HOME/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
-
 # Load API Keys from secure file (if exists)
 if test -f ~/.secrets.env
     # Export variables from .env file for fish
