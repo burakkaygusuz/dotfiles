@@ -135,7 +135,3 @@ link_config "$REPO_ROOT/ghostty/config" "$TARGET_HOME/.config/ghostty/config"
 link_config "$REPO_ROOT/vscode/settings.json" "$TARGET_HOME/Library/Application Support/Code/User/settings.json"
 
 ensure_default_fish_shell
-
-if command -v git-lfs >/dev/null 2>&1; then
-  git lfs install --skip-repo
-fi

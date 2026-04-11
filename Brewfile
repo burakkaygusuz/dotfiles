@@ -5,8 +5,6 @@ brew "curl"
 brew "fish"
 # Distributed revision control system
 brew "git"
-# Large file support for git repositories
-brew "git-lfs"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Modern load testing tool, using Go and JavaScript
