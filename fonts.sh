@@ -1,20 +1,17 @@
 #!/usr/bin/env bash
 
-# Custom Nerd Fonts Installer
-# Direct download from GitHub releases to ~/Library/Fonts
-
 set -euo pipefail
 
 FONTS=(
   "CommitMono"
-  "IBMPlexMono" # BlexMono is the Nerd Font name for IBM Plex Mono
+  "IBMPlexMono"
   "FiraCode"
   "GeistMono"
-  "Meslo" # MesloLGS base
+  "Meslo"
   "JetBrainsMono"
 )
 
-VERSION="${VERSION:-v3.4.0}" # Nerd Fonts version
+VERSION="${VERSION:-v3.4.0}"
 FONT_DIR="${FONT_DIR:-$HOME/Library/Fonts}"
 MAX_PARALLEL="${MAX_PARALLEL:-3}"
 
