@@ -1,4 +1,4 @@
-# --- Gemini CLI: Fish Shell Configuration ---
+# --- Fish Shell Configuration ---
 
 # Remove greeting
 set -g fish_greeting
