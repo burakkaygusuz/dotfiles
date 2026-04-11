@@ -15,6 +15,8 @@ brew "openjdk"
 brew "maven"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Cross-shell prompt for astronauts

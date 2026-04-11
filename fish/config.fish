@@ -25,7 +25,6 @@ end
 
 # Custom PATHs
 fish_add_path /opt/homebrew/opt/python@3.14/libexec/bin
-fish_add_path $HOME/.antigravity/antigravity/bin
 fish_add_path $HOME/.local/bin
 
 # Dotnet Setup
