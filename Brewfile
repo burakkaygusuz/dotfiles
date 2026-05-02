@@ -1,4 +1,6 @@
 tap "oven-sh/bun"
+# Breadth-first search for your files
+brew "bfs"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # User-friendly command-line shell for UNIX-like operating systems
@@ -23,6 +25,8 @@ brew "pipx"
 brew "starship"
 # Autoformat shell script source code
 brew "shfmt"
+# Ultra-fast grep with interactive query UI and fuzzy search
+brew "ugrep"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
