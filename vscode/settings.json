@@ -7,14 +7,13 @@
   "editor.fontWeight": "normal",
   "editor.fontLigatures": true,
   "editor.cursorBlinking": "smooth",
-  "editor.cursorSmoothCaretAnimation": "explicit",
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
   "editor.wordWrap": "on",
   "editor.minimap.enabled": false,
   "editor.unicodeHighlight.allowedLocales": {
     "tr": true
   },
-
   // --- Modern UI & Productivity ---
   "editor.stickyScroll.enabled": true,
   "editor.bracketPairColorization.enabled": true,
@@ -36,7 +35,10 @@
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
   "workbench.editor.defaultBinaryEditor": "default",
-
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.value": 10,
+  "window.commandCenter": true,
+  "search.searchView.semanticSearchBehavior": "noResults",
   // --- File Handling & Formatting ---
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
@@ -47,7 +49,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-
   // --- Terminal ---
   "terminal.integrated.fontFamily": "'MesloLGS Nerd Font Mono', 'FiraCode Nerd Font Mono', monospace",
   "terminal.integrated.fontSize": 13,
@@ -62,19 +63,49 @@
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.persistentSessionReviveProcess": "onExit",
   "terminal.integrated.defaultProfile.osx": "fish",
-  "terminal.integrated.automationProfile.osx": {
-    "path": "/bin/sh"
-  },
   "terminal.integrated.profiles.osx": {
-    "bash": { "path": "bash", "args": ["-l"], "icon": "terminal-bash" },
-    "zsh": { "path": "zsh", "args": ["-l"] },
-    "fish": { "path": "/opt/homebrew/bin/fish", "args": ["-l"] },
-    "pwsh": { "path": "pwsh", "icon": "terminal-powershell" }
+    "bash": {
+      "path": "bash",
+      "args": [
+        "-l"
+      ],
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh",
+      "args": [
+        "-l"
+      ]
+    },
+    "fish": {
+      "path": "/opt/homebrew/bin/fish",
+      "args": [
+        "-l"
+      ]
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "terminal.integrated.profiles.linux": {
+    "fish": {
+      "path": "/usr/bin/fish",
+      "args": [
+        "-l"
+      ]
+    }
   },
   "terminal.integrated.allowedLinkSchemes": [
-    "file", "http", "https", "mailto", "vscode", "vscode-insiders", "docker-desktop"
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "docker-desktop"
   ],
-
   // --- Git ---
   "git.autofetch": true,
   "git.confirmSync": false,
@@ -82,10 +113,10 @@
   "git.promptToSaveFilesBeforeCommit": "always",
   "git.autoStash": true,
   "git.openRepositoryInParentFolders": "always",
-
   // --- Languages (JS/TS, Python, .NET) ---
-  "js/ts.updateImportsOnFileMove.enabled": "always",
   "js/ts.suggest.autoImports": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
   "python.createEnvironment.trigger": "off",
   "python.languageServer": "Default",
   "dotnet.autoDetect": "on",
@@ -94,10 +125,18 @@
   "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "openFiles",
   "csharp.format.enable": true,
   "csharp.semanticHighlighting.enabled": true,
-  "[markdown]": { "editor.defaultFormatter": "DavidAnson.vscode-markdownlint" },
-  "[shellscript]": { "editor.defaultFormatter": "mkhl.shfmt" },
-  "[jsonc]": { "editor.defaultFormatter": "vscode.json-language-features" },
-
+  "yaml.schemas": {
+    "file:///Users/burak/.vscode/extensions/docsmsft.docs-yaml-1.0.5/dist/toc.schema.json": "/toc\\.yml/i"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
   // --- Tools & Code Quality ---
   "prettier.singleQuote": true,
   "prettier.trailingComma": "none",
@@ -115,26 +154,50 @@
   "sonarlint.focusOnNewCode": true,
   "sonarlint.automaticAnalysis": true,
   "sonarlint.disableTelemetry": true,
-  "sonarlint.rules": { "typescript:S7785": { "level": "off" } },
+  "sonarlint.rules": {
+    "typescript:S7785": {
+      "level": "off"
+    }
+  },
   "playwright.showTrace": false,
   "playwright.reuseBrowser": true,
   "telemetry.telemetryLevel": "off",
   "redhat.telemetry.enabled": false,
-
   // --- GitHub Copilot ---
   "github.copilot.editor.enableCodeActions": true,
   "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.chat.editor.temporalContext.enabled": true,
-
   "github.copilot.chat.commitMessageGeneration.instructions": [
-    { "text": "Format MUST always be: <type>(<scope>): <description>" },
-    { "text": "Scope is MANDATORY for every commit, even for simple changes." },
-    { "text": "NEVER include a body or footer. ONLY generate a single line." },
-    { "text": "NEVER include breaking change indicators or descriptions." },
-    { "text": "Valid types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert" },
-    { "text": "Subject: Max 50 chars, imperative mood, no period, all lowercase except proper nouns" }
+    {
+      "text": "Format MUST always be: <type>(<scope>): <description>"
+    },
+    {
+      "text": "Scope is MANDATORY for every commit, even for simple changes."
+    },
+    {
+      "text": "NEVER include a body or footer. ONLY generate a single line."
+    },
+    {
+      "text": "NEVER include breaking change indicators or descriptions."
+    },
+    {
+      "text": "Valid types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+    },
+    {
+      "text": "Subject: Max 50 chars, imperative mood, no period, all lowercase except proper nouns"
+    }
   ],
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "dockercompose": true
+  },
   "chat.agent.maxRequests": 100,
   "chat.mcp.access": "all",
-  "chat.mcp.gallery.enabled": true
+  "chat.mcp.gallery.enabled": true,
+  "chat.tools.riskAssessment.enabled": true,
+  // --- Resharper ---
+  "resharper.region.region": "Europe",
+  "resharper.dataSharing.allowDataSharing": false,
 }
