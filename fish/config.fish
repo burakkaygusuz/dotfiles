@@ -73,3 +73,4 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias py='python3'
 alias node='node --no-warnings'
+set -gx VSCODE_CLI_TELEMETRY_OPTOUT 1

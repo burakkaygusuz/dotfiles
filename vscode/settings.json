@@ -38,7 +38,7 @@
   "workbench.editor.limit.enabled": true,
   "workbench.editor.limit.value": 10,
   "window.commandCenter": true,
-  "search.searchView.semanticSearchBehavior": "noResults",
+  "search.searchView.semanticSearchBehavior": "manual",
   // --- File Handling & Formatting ---
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
@@ -137,6 +137,14 @@
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
+  // --- Privacy, Updates & Telemetry ---
+  "telemetry.telemetryLevel": "off",
+  "redhat.telemetry.enabled": false,
+  "sonarlint.disableTelemetry": true,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "update.mode": "none",
   // --- Tools & Code Quality ---
   "prettier.singleQuote": true,
   "prettier.trailingComma": "none",
@@ -153,7 +161,6 @@
   },
   "sonarlint.focusOnNewCode": true,
   "sonarlint.automaticAnalysis": true,
-  "sonarlint.disableTelemetry": true,
   "sonarlint.rules": {
     "typescript:S7785": {
       "level": "off"
@@ -161,8 +168,6 @@
   },
   "playwright.showTrace": false,
   "playwright.reuseBrowser": true,
-  "telemetry.telemetryLevel": "off",
-  "redhat.telemetry.enabled": false,
   // --- GitHub Copilot ---
   "github.copilot.editor.enableCodeActions": true,
   "github.copilot.nextEditSuggestions.enabled": true,
