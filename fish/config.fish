@@ -13,7 +13,7 @@ fish_add_path /opt/homebrew/opt/python@3.14/libexec/bin
 fish_add_path $HOME/.local/bin
 
 # Java Configuration
-set -gx JAVA_HOME (/opt/homebrew/bin/brew --prefix)/opt/openjdk
+set -gx JAVA_HOME /opt/homebrew/opt/openjdk
 fish_add_path $JAVA_HOME/bin
 
 # .NET Configuration
@@ -23,9 +23,7 @@ fish_add_path $DOTNET_ROOT/tools
 
 # PNPM Configuration
 set -gx PNPM_HOME "$HOME/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
+fish_add_path $PNPM_HOME
 
 # ------------------------------------------------------------------------------
 # SHELL INTEGRATIONS & SECRETS
@@ -57,6 +55,7 @@ set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 set -gx HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 1
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
+set -gx VSCODE_CLI_TELEMETRY_OPTOUT 1
 set -gx SHELL_SESSIONS_DISABLE 1
 set -gx PYTHON_HISTORY /dev/null
 set -gx PYTHONSTARTUP /dev/null
@@ -73,4 +72,3 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias py='python3'
 alias node='node --no-warnings'
-set -gx VSCODE_CLI_TELEMETRY_OPTOUT 1

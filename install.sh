@@ -128,6 +128,7 @@ else
 fi
 
 link_config "$REPO_ROOT/fish/config.fish" "$TARGET_HOME/.config/fish/config.fish"
+link_config "$REPO_ROOT/zsh/.zshrc" "$TARGET_HOME/.zshrc"
 link_config "$REPO_ROOT/starship/starship.toml" "$TARGET_HOME/.config/starship.toml"
 link_config "$REPO_ROOT/git/.gitconfig" "$TARGET_HOME/.gitconfig"
 link_config "$REPO_ROOT/git/.gitignore_global" "$TARGET_HOME/.gitignore_global"

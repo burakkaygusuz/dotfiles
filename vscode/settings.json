@@ -204,5 +204,5 @@
   "chat.tools.riskAssessment.enabled": true,
   // --- Resharper ---
   "resharper.region.region": "Europe",
-  "resharper.dataSharing.allowDataSharing": false,
+  "resharper.dataSharing.allowDataSharing": false
 }

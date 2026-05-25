@@ -5,7 +5,7 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/
 export PATH="/opt/homebrew/opt/node/bin:$PATH"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.14/libexec/bin:$PATH"
-export PATH="/Users/burak/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Java Configuration
 export JAVA_HOME="/opt/homebrew/opt/openjdk"
@@ -50,6 +50,7 @@ export HOMEBREW_AUTO_UPDATE_SECS=86400
 export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=1
 export HOMEBREW_NO_ENV_HINTS=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export VSCODE_CLI_TELEMETRY_OPTOUT=1
 export SHELL_SESSIONS_DISABLE=1
 export PYTHON_HISTORY=/dev/null
 export PYTHONSTARTUP="/dev/null"
@@ -66,4 +67,3 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias py='python3'
 alias node='node --no-warnings'
-export VSCODE_CLI_TELEMETRY_OPTOUT=1

@@ -1,5 +1,3 @@
-tap "oven-sh/bun"
-# Breadth-first search for your files
 brew "bfs"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
@@ -9,8 +7,6 @@ brew "fish"
 brew "git"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Modern load testing tool, using Go and JavaScript
-brew "k6"
 # Development kit for the Java programming language
 brew "openjdk"
 # Java-based project management
@@ -39,8 +35,8 @@ cask "brave-browser"
 cask "ghostty"
 # Web browser
 cask "google-chrome"
-# App to write, plan, collaborate, and get organised
-cask "notion"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Replacement for Docker Desktop
 cask "orbstack"
 # Collaboration platform for API development
@@ -55,6 +51,7 @@ cask "visual-studio-code"
 cask "vlc"
 # Native desktop client for WhatsApp
 cask "whatsapp"
+# VS Code extensions
 vscode "astro-build.astro-vscode"
 vscode "bradlc.vscode-tailwindcss"
 vscode "charliermarsh.ruff"

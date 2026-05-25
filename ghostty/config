@@ -39,7 +39,7 @@ macos-option-as-alt = left
 confirm-close-surface = true
 window-inherit-working-directory = true
 window-save-state = "default"
-working-directory = /Users/burak
+working-directory = ~
 
 # --- [ KEYBINDINGS ] ---
 keybind = super+d=new_split:right
