@@ -4,7 +4,9 @@
 set -g fish_greeting
 
 # Homebrew
-eval (/opt/homebrew/bin/brew shellenv)
+if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+end
 
 # Core Paths
 fish_add_path /opt/homebrew/opt/node/bin
@@ -30,9 +32,16 @@ fish_add_path $PNPM_HOME
 # ------------------------------------------------------------------------------
 # Load local secrets
 if test -f ~/.secrets.env
-    for line in (cat ~/.secrets.env | grep -v '^#' | grep -v '^$')
-        set -l kv (string split -m 1 "=" (string replace "export " "" $line))
-        set -gx $kv[1] (string trim -c '"' $kv[2])
+    for line in (grep -v '^#' ~/.secrets.env | grep -v '^\s*$')
+        set -l clean (string replace --regex '^\s*export\s+' '' $line)
+        set -l kv (string split -m 1 '=' $clean)
+        if test (count $kv) -eq 2
+            set -l key (string trim $kv[1])
+            set -l val (string trim $kv[2] | string replace --regex '^["\'](.*)["\'\']$' '$1')
+            if string match --regex '^[A-Za-z_][A-Za-z0-9_]*$' -- $key >/dev/null
+                set -gx $key $val
+            end
+        end
     end
 end
 
@@ -45,7 +54,9 @@ end
 if test -f ~/.orbstack/shell/init.fish
     source ~/.orbstack/shell/init.fish
 end
-source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+if test -f ~/.orbstack/shell/init2.fish
+    source ~/.orbstack/shell/init2.fish
+end
 
 # ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY (Opt-out)

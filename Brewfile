@@ -1,3 +1,4 @@
+tap "oven-sh/bun"
 brew "bfs"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
@@ -25,6 +26,8 @@ brew "shfmt"
 brew "ugrep"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Rust Token Killer - CLI wrapper to silence noisy commands
+brew "rtk"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
 brew "oven-sh/bun/bun"
 # Comprehensive macOS cleanup and application uninstall tool

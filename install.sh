@@ -79,6 +79,27 @@ ensure_default_fish_shell() {
   fi
 }
 
+setup_wrappers() {
+  echo "Setting up command wrappers..."
+  mkdir -p "$TARGET_HOME/.local/bin"
+
+  if [ ! -f "$TARGET_HOME/.local/bin/find" ]; then
+    cat > "$TARGET_HOME/.local/bin/find" <<'EOF'
+#!/usr/bin/env bash
+exec bfs "$@"
+EOF
+    chmod +x "$TARGET_HOME/.local/bin/find"
+  fi
+
+  if [ ! -f "$TARGET_HOME/.local/bin/grep" ]; then
+    cat > "$TARGET_HOME/.local/bin/grep" <<'EOF'
+#!/usr/bin/env bash
+exec ugrep "$@"
+EOF
+    chmod +x "$TARGET_HOME/.local/bin/grep"
+  fi
+}
+
 install_homebrew() {
   echo "Installing Homebrew..."
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -135,4 +156,5 @@ link_config "$REPO_ROOT/git/.gitignore_global" "$TARGET_HOME/.gitignore_global"
 link_config "$REPO_ROOT/ghostty/config" "$TARGET_HOME/.config/ghostty/config"
 link_config "$REPO_ROOT/vscode/settings.json" "$TARGET_HOME/Library/Application Support/Code/User/settings.json"
 
+setup_wrappers
 ensure_default_fish_shell

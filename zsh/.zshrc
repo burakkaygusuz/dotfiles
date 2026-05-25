@@ -18,9 +18,24 @@ export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
 # ------------------------------------------------------------------------------
 # SHELL INTEGRATIONS & SECRETS
 # ------------------------------------------------------------------------------
-# Load local secrets
+# Load local secrets (key=value parser — no arbitrary code execution)
 if [ -f ~/.secrets.env ]; then
-    source ~/.secrets.env
+    while IFS= read -r line; do
+        # skip comments and blank lines
+        [[ "$line" =~ ^[[:space:]]*# ]] && continue
+        [[ -z "${line// }" ]] && continue
+        # strip optional leading "export "
+        line="${line#export }"
+        # extract key and value
+        local key="${line%%=*}"
+        local val="${line#*=}"
+        # only export valid identifiers
+        if [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
+            val="${val#\'}"; val="${val%\'}"
+            val="${val#\"}"; val="${val%\"}"
+            export "$key=$val"
+        fi
+    done < ~/.secrets.env
 fi
 
 # OrbStack initialization
@@ -36,11 +51,16 @@ setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt AUTO_CD
 
-# Completion
-autoload -Uz compinit && compinit
+# Completion (cached — rebuilds once per day)
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
 # Prompt
-PROMPT='%n@%m %~ %# '
+eval "$(starship init zsh)"
 
 # ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY (Opt-out)
