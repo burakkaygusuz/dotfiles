@@ -33,12 +33,13 @@ install_font() {
   url="https://github.com/ryanoasis/nerd-fonts/releases/download/$VERSION/$font.zip"
   temp_dir="$(mktemp -d)"
 
+  trap 'rm -rf "$temp_dir"' EXIT
+
   curl -fLo "$temp_dir/$font.zip" "$url"
   unzip -q "$temp_dir/$font.zip" -d "$temp_dir"
 
   find "$temp_dir" -name "*.[ot]tf" -exec cp {} "$FONT_DIR/" \;
 
-  rm -rf "$temp_dir"
   echo "$font installed successfully."
 }
 
@@ -56,10 +57,8 @@ wait_for_slot() {
 }
 
 refresh_font_cache() {
-  if command -v atsutil >/dev/null 2>&1; then
-    echo "Refreshing user font cache..."
-    atsutil databases -removeUser >/dev/null
-  fi
+  echo "Refreshing CoreText font cache..."
+  touch "$FONT_DIR"
 }
 
 pending_fonts=()
