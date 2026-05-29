@@ -15,6 +15,10 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export DOTNET_ROOT="$HOME/.dotnet"
 export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
 
+# PNPM Configuration
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 # ------------------------------------------------------------------------------
 # SHELL INTEGRATIONS & SECRETS
 # ------------------------------------------------------------------------------
