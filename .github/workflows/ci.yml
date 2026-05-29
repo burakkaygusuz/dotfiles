@@ -23,10 +23,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Test bootstrap (Dry Run)
-        env:
-          DOTFILES_SKIP_BREW: "1"
-          DOTFILES_SKIP_DEFAULT_SHELL: "1"
+      - name: Test symlinks and wrappers
         run: |
-          chmod +x install.sh
-          ./install.sh
+          make symlinks
+          make wrappers

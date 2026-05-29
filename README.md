@@ -17,7 +17,7 @@ This repository contains my personal configuration files for a streamlined devel
 ## 🛠️ Installation
 
 This repository uses a staged setup flow.
-`./install.sh` handles the core package/config bootstrap, but a complete machine setup may also require the optional font and GitHub SSH steps below.
+`make all` handles the core package/config bootstrap, but a complete machine setup may also require the optional font and GitHub SSH steps below.
 
 ### 1. Clone the Repository
 
@@ -29,14 +29,15 @@ cd ~/dotfiles
 ### 2. Run the Core Bootstrap
 
 ```bash
-chmod +x install.sh
-./install.sh
+make all
 ```
+
+You can also run individual targets like `make brew`, `make symlinks`, `make wrappers`, or `make shell`. Run `make help` for all options.
 
 This repository targets Apple Silicon Macs only and assumes Homebrew is installed in `/opt/homebrew`.
 Prefer running the installer from a native Apple Silicon shell for the most predictable behavior.
-`install.sh` also tries to make `fish` your default login shell after installation.
-If `fish` is not registered in `/etc/shells`, the script prints the exact commands you need to run.
+`make shell` also tries to make `fish` your default login shell after installation.
+If `fish` is not registered in `/etc/shells`, you will be prompted for your password to add it.
 
 ### 3. Install Nerd Fonts (Recommended)
 
@@ -75,7 +76,7 @@ After the steps above:
 
 - Restart your terminal session so the default shell and prompt changes are applied cleanly.
 - Open VS Code again if you want the updated terminal/profile settings to take effect.
-- If `install.sh` printed manual `chsh` instructions, run them before considering the setup complete.
+- If `make shell` prompted you for a password to change the shell, ensure it succeeded.
 
 ## 📦 Maintenance
 
