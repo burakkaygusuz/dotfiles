@@ -1,25 +1,18 @@
-format = """
-$directory\
-$git_branch\
-$git_status\
-$docker_context\
-$package\
-$nodejs\
-$bun\
-$dotnet\
-$python\
-$rust\
-$golang\
-$terraform\
-$aws\
-$gcloud\
-$kubernetes\
-$status\
-$cmd_duration\
-$line_break\
-$character"""
+scan_timeout = 30
+command_timeout = 500
 
-add_newline = false
+format = """$os$directory$character"""
+right_format = """$all"""
+
+add_newline = true
+
+[os]
+disabled = false
+format = "[$symbol]($style) "
+style = "bold white"
+
+[os.symbols]
+Macos = ""
 
 [directory]
 truncation_length = 1
@@ -29,12 +22,11 @@ format = '[$path]($style)[$read_only]($read_only_style) '
 [character]
 success_symbol = '[➜](bold green) '
 error_symbol = '[✘](bold red) '
-vimcmd_symbol = '[V](bold yellow) '
 
 [git_branch]
 symbol = ' '
 style = 'bold purple'
-format = 'on [$symbol$branch]($style) '
+format = '[$symbol$branch]($style) '
 
 [git_status]
 style = 'bold red'
@@ -63,7 +55,7 @@ detect_files = []
 detect_folders = ['node_modules']
 
 [bun]
-symbol = ' '
+symbol = '🍞 '
 format = 'via [$symbol($version )]($style)'
 style = 'bold 201'
 
@@ -72,10 +64,16 @@ symbol = '󰪮 '
 format = 'via [$symbol($version )]($style)'
 style = 'bold blue'
 detect_extensions = ['csproj', 'sln', 'slnx', 'fsproj', 'vbproj']
-detect_files = ['global.json', 'project.json', 'Directory.Build.props', 'Directory.Build.targets', 'Packages.props']
+detect_files = [
+  'global.json',
+  'project.json',
+  'Directory.Build.props',
+  'Directory.Build.targets',
+  'Packages.props',
+]
 
 [python]
-symbol = ' '
+symbol = ' '
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 style = 'bold yellow'
 
@@ -91,8 +89,9 @@ style = 'bold cyan'
 
 [docker_context]
 symbol = ' '
-format = 'on [$symbol$context]($style) '
+format = '[$symbol$context]($style) '
 style = 'bold blue'
+only_with_files = true
 
 [terraform]
 symbol = '󱁢 '
@@ -103,14 +102,17 @@ style = 'bold 105'
 symbol = '☸ '
 format = 'at [$symbol$context( \($namespace\))]($style) '
 style = 'cyan'
+disabled = false
+detect_files = ['k8s', '.kube']
 
 [aws]
-symbol = ' '
+symbol = ' '
 format = 'on [$symbol$profile]($style) '
 style = 'bold yellow'
+force_display = false
 
 [gcloud]
-symbol = ' '
+symbol = ' '
 format = 'on [$symbol$project]($style) '
 style = 'bold blue'
 
