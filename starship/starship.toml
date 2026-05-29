@@ -12,7 +12,7 @@ format = "[$symbol]($style) "
 style = "bold white"
 
 [os.symbols]
-Macos = ""
+Macos = "󰀵 "
 
 [directory]
 truncation_length = 1
@@ -48,14 +48,14 @@ format = 'took [$duration]($style) '
 style = 'dimmed yellow'
 
 [nodejs]
-symbol = ' '
+symbol = '󰎙 '
 format = 'via [$symbol($version )]($style)'
 style = 'bold green'
 detect_files = []
 detect_folders = ['node_modules']
 
 [bun]
-symbol = '🍞 '
+symbol = '󰮯 '
 format = 'via [$symbol($version )]($style)'
 style = 'bold 201'
 
@@ -73,7 +73,7 @@ detect_files = [
 ]
 
 [python]
-symbol = ' '
+symbol = '󰌠 '
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 style = 'bold yellow'
 
@@ -87,6 +87,16 @@ symbol = ' '
 format = 'via [$symbol($version )]($style)'
 style = 'bold cyan'
 
+[java]
+symbol = '󰬷 '
+format = 'via [$symbol($version )]($style)'
+style = 'bold red'
+
+[package]
+symbol = '󰏗 '
+format = 'is [$symbol$version]($style) '
+style = 'bold 208'
+
 [docker_context]
 symbol = ' '
 format = '[$symbol$context]($style) '
@@ -99,7 +109,7 @@ format = 'via [$symbol$workspace]($style) '
 style = 'bold 105'
 
 [kubernetes]
-symbol = '☸ '
+symbol = '󱃾 '
 format = 'at [$symbol$context( \($namespace\))]($style) '
 style = 'cyan'
 disabled = false
@@ -119,5 +129,5 @@ style = 'bold blue'
 [status]
 disabled = false
 format = '[$symbol $exit_code]($style) '
-symbol = '🔴'
+symbol = '󰅙 '
 style = 'bold red'
