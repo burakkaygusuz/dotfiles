@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Run shellcheck
+        run: |
+          find . -name "*.sh" -print0 | xargs -0 shellcheck
+
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test bootstrap (Dry Run)
+        env:
+          DOTFILES_SKIP_BREW: "1"
+          DOTFILES_SKIP_DEFAULT_SHELL: "1"
+        run: |
+          chmod +x install.sh
+          ./install.sh
