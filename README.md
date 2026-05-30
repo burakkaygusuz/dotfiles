@@ -12,7 +12,7 @@ This repository contains my personal configuration files for a streamlined devel
 - **Git**: Advanced global configuration with professional defaults.
 - **VS Code**: Optimized `settings.json` focused on productivity and clean UI.
 - **Brewfile**: Automated management of all macOS applications and CLI tools.
-- **GNU Stow**: Declarative, conflict-free symlink management.
+- **Chezmoi**: Modern, secure, and declarative dotfiles management.
 - **Nerd Fonts**: Custom script to install essential fonts for developers.
 
 ## 🛠️ Installation

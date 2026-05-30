@@ -28,13 +28,12 @@ brew: macos
 	@eval "$$(/opt/homebrew/bin/brew shellenv)" && brew bundle --file=$(DOTFILES_DIR)/Brewfile
 
 symlinks:
-	@echo "🔗 Creating symlinks using GNU Stow..."
-	@mkdir -p $(HOME)/.config/fish $(HOME)/.config/ghostty "$(HOME)/Library/Application Support/Code/User"
-	@if ! command -v stow >/dev/null 2>&1; then \
-		echo "Error: GNU Stow is not installed. Run 'make brew' first."; exit 1; \
+	@echo "🔗 Applying dotfiles with Chezmoi..."
+	@if ! command -v chezmoi >/dev/null 2>&1; then \
+		echo "Error: Chezmoi is not installed. Run 'make brew' first."; exit 1; \
 	fi
-	@stow --dir=$(DOTFILES_DIR) --target=$(HOME) --no-folding -R fish zsh starship git ghostty vscode
-	@echo "✅ All symlinks created with Stow."
+	@chezmoi apply --source $(DOTFILES_DIR) --force
+	@echo "✅ All dotfiles applied successfully with Chezmoi."
 
 wrappers:
 	@echo "⚡ Setting up command wrappers..."
