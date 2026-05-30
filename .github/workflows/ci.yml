@@ -25,5 +25,6 @@ jobs:
 
       - name: Test symlinks and wrappers
         run: |
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install stow
           make symlinks
           make wrappers

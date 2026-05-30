@@ -6,6 +6,8 @@ brew "curl"
 brew "fish"
 # Distributed revision control system
 brew "git"
+# Manage symlinks
+brew "stow"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Development kit for the Java programming language

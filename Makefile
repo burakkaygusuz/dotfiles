@@ -28,16 +28,13 @@ brew: macos
 	@eval "$$(/opt/homebrew/bin/brew shellenv)" && brew bundle --file=$(DOTFILES_DIR)/Brewfile
 
 symlinks:
-	@echo "🔗 Creating symlinks..."
+	@echo "🔗 Creating symlinks using GNU Stow..."
 	@mkdir -p $(HOME)/.config/fish $(HOME)/.config/ghostty "$(HOME)/Library/Application Support/Code/User"
-	@ln -sfn $(DOTFILES_DIR)/fish/config.fish $(HOME)/.config/fish/config.fish
-	@ln -sfn $(DOTFILES_DIR)/zsh/.zshrc $(HOME)/.zshrc
-	@ln -sfn $(DOTFILES_DIR)/starship/starship.toml $(HOME)/.config/starship.toml
-	@ln -sfn $(DOTFILES_DIR)/git/.gitconfig $(HOME)/.gitconfig
-	@ln -sfn $(DOTFILES_DIR)/git/.gitignore_global $(HOME)/.gitignore_global
-	@ln -sfn $(DOTFILES_DIR)/ghostty/config $(HOME)/.config/ghostty/config
-	@ln -sfn $(DOTFILES_DIR)/vscode/settings.json "$(HOME)/Library/Application Support/Code/User/settings.json"
-	@echo "✅ All symlinks created."
+	@if ! command -v stow >/dev/null 2>&1; then \
+		echo "Error: GNU Stow is not installed. Run 'make brew' first."; exit 1; \
+	fi
+	@stow --dir=$(DOTFILES_DIR) --target=$(HOME) --no-folding -R fish zsh starship git ghostty vscode
+	@echo "✅ All symlinks created with Stow."
 
 wrappers:
 	@echo "⚡ Setting up command wrappers..."
