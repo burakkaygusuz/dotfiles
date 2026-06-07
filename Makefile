@@ -42,7 +42,11 @@ wrappers:
 	@echo 'exec bfs "$$@"' >> $(HOME)/.local/bin/find
 	@echo '#!/usr/bin/env bash' > $(HOME)/.local/bin/grep
 	@echo 'exec ugrep "$$@"' >> $(HOME)/.local/bin/grep
-	@chmod +x $(HOME)/.local/bin/find $(HOME)/.local/bin/grep
+	@echo '#!/usr/bin/env bash' > $(HOME)/.local/bin/egrep
+	@echo 'exec ugrep -E "$$@"' >> $(HOME)/.local/bin/egrep
+	@echo '#!/usr/bin/env bash' > $(HOME)/.local/bin/fgrep
+	@echo 'exec ugrep -F "$$@"' >> $(HOME)/.local/bin/fgrep
+	@chmod +x $(HOME)/.local/bin/find $(HOME)/.local/bin/grep $(HOME)/.local/bin/egrep $(HOME)/.local/bin/fgrep
 
 shell:
 	@echo "🐚 Setting default shell to fish..."
