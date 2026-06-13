@@ -1,4 +1,4 @@
-tap "oven-sh/bun"
+tap "oven-sh/bun", trusted: true
 brew "bfs"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
