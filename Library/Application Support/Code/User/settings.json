@@ -119,12 +119,6 @@
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
   "python.createEnvironment.trigger": "off",
   "python.languageServer": "Default",
-  "dotnet.autoDetect": "on",
-  "dotnet.codeLens.enableReferencesCodeLens": true,
-  "dotnet.formatting.organizeImportsOnFormat": true,
-  "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "openFiles",
-  "csharp.format.enable": true,
-  "csharp.semanticHighlighting.enabled": true,
   "yaml.schemas": {
     "file:///Users/burak/.vscode/extensions/docsmsft.docs-yaml-1.0.5/dist/toc.schema.json": "/toc\\.yml/i"
   },
@@ -201,8 +195,5 @@
   "chat.agent.maxRequests": 100,
   "chat.mcp.access": "all",
   "chat.mcp.gallery.enabled": true,
-  "chat.tools.riskAssessment.enabled": true,
-  // --- Resharper ---
-  "resharper.region.region": "Europe",
-  "resharper.dataSharing.allowDataSharing": false
+  "chat.tools.riskAssessment.enabled": true
 }

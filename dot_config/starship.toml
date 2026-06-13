@@ -59,19 +59,6 @@ symbol = '󰮯 '
 format = 'via [$symbol($version )]($style)'
 style = 'bold 201'
 
-[dotnet]
-symbol = '󰪮 '
-format = 'via [$symbol($version )]($style)'
-style = 'bold blue'
-detect_extensions = ['csproj', 'sln', 'slnx', 'fsproj', 'vbproj']
-detect_files = [
-  'global.json',
-  'project.json',
-  'Directory.Build.props',
-  'Directory.Build.targets',
-  'Packages.props',
-]
-
 [python]
 symbol = '󰌠 '
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'

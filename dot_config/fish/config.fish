@@ -18,11 +18,6 @@ fish_add_path $HOME/.local/bin
 set -gx JAVA_HOME /opt/homebrew/opt/openjdk
 fish_add_path $JAVA_HOME/bin
 
-# .NET Configuration
-set -gx DOTNET_ROOT $HOME/.dotnet
-fish_add_path $DOTNET_ROOT
-fish_add_path $DOTNET_ROOT/tools
-
 # PNPM Configuration
 set -gx PNPM_HOME "$HOME/Library/pnpm"
 fish_add_path $PNPM_HOME
@@ -65,7 +60,6 @@ set -gx HOMEBREW_NO_ANALYTICS 1
 set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 set -gx HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 1
 set -gx HOMEBREW_NO_ENV_HINTS 1
-set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 set -gx VSCODE_CLI_TELEMETRY_OPTOUT 1
 set -gx SHELL_SESSIONS_DISABLE 1
 set -gx PYTHON_HISTORY /dev/null
