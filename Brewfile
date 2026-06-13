@@ -38,16 +38,12 @@ brew "mole"
 cask "brave-browser"
 # GPU-accelerated terminal emulator
 cask "ghostty"
-# Web browser
-cask "google-chrome"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Replacement for Docker Desktop
 cask "orbstack"
 # Collaboration platform for API development
 cask "postman"
-# Team communication and collaboration software
-cask "slack"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
