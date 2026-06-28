@@ -137,7 +137,7 @@
   "sonarlint.disableTelemetry": true,
   "workbench.settings.enableNaturalLanguageSearch": false,
   "extensions.autoCheckUpdates": false,
-  "extensions.autoUpdate": false,
+  "extensions.autoUpdate": "on",
   "update.mode": "none",
   // --- Tools & Code Quality ---
   "prettier.singleQuote": true,
