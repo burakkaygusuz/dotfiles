@@ -38,9 +38,6 @@ if [ -f ~/.secrets.env ]; then
     done < ~/.secrets.env
 fi
 
-# OrbStack initialization
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
-
 # ------------------------------------------------------------------------------
 # SHELL BEHAVIOR & CONFIGURATION
 # ------------------------------------------------------------------------------

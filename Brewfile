@@ -40,8 +40,8 @@ cask "brave-browser"
 cask "ghostty"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Replacement for Docker Desktop
-cask "orbstack"
+# Container platform for macOS (alternative to Docker Desktop)
+brew "container"
 # Collaboration platform for API development
 cask "postman"
 # Open-source code editor

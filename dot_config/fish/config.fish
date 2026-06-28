@@ -45,13 +45,6 @@ if status is-interactive
     /opt/homebrew/bin/starship init fish | source
 end
 
-# OrbStack initialization
-if test -f ~/.orbstack/shell/init.fish
-    source ~/.orbstack/shell/init.fish
-end
-if test -f ~/.orbstack/shell/init2.fish
-    source ~/.orbstack/shell/init2.fish
-end
 
 # ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY (Opt-out)
