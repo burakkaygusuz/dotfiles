@@ -120,7 +120,7 @@
   "python.createEnvironment.trigger": "off",
   "python.languageServer": "Default",
   "yaml.schemas": {
-    "file:///Users/burak/.vscode/extensions/docsmsft.docs-yaml-1.0.5/dist/toc.schema.json": "/toc\\.yml/i"
+    "https://raw.githubusercontent.com/microsoft/docs-yaml/main/schemas/toc.schema.json": "toc.yml"
   },
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
