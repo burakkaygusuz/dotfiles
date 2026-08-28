@@ -1,19 +1,29 @@
-# ------------------------------------------------------------------------------
-# PATH & SYSTEM ENVIRONMENT
-# ------------------------------------------------------------------------------
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-export PATH="/opt/homebrew/opt/node/bin:$PATH"
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-export PATH="/opt/homebrew/opt/python@3.14/libexec/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+# Deduplicate PATH automatically in Zsh
+typeset -U path PATH
+
+# Homebrew initialization (dynamic path discovery)
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # Java Configuration
-export JAVA_HOME="/opt/homebrew/opt/openjdk"
-export PATH="$JAVA_HOME/bin:$PATH"
+if [ -n "$HOMEBREW_PREFIX" ] && [ -d "$HOMEBREW_PREFIX/opt/openjdk" ]; then
+    export JAVA_HOME="$HOMEBREW_PREFIX/opt/openjdk"
+fi
 
 # PNPM Configuration
 export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+
+# Canonical PATH hierarchy (.local/bin > pnpm > java > homebrew > system)
+path=(
+    "$HOME/.local/bin"
+    "$PNPM_HOME"
+    ${JAVA_HOME:+"$JAVA_HOME/bin"}
+    $path
+)
+export PATH
 
 # ------------------------------------------------------------------------------
 # SHELL INTEGRATIONS & SECRETS
@@ -42,10 +52,13 @@ fi
 # SHELL BEHAVIOR & CONFIGURATION
 # ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=50000
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt AUTO_CD
 
 # Completion (cached — rebuilds once per day)
@@ -57,7 +70,9 @@ else
 fi
 
 # Prompt
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
 
 # ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY (Opt-out)
@@ -83,3 +98,11 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias py='python3'
 alias node='node --no-warnings'
+
+# Modern CLI tools in interactive sessions
+command -v bfs >/dev/null 2>&1 && alias find='bfs'
+if command -v ugrep >/dev/null 2>&1; then
+    alias grep='ugrep'
+    alias egrep='ugrep -E'
+    alias fgrep='ugrep -F'
+fi

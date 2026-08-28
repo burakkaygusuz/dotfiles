@@ -51,7 +51,7 @@ style = 'dimmed yellow'
 symbol = '󰎙 '
 format = 'via [$symbol($version )]($style)'
 style = 'bold green'
-detect_files = []
+detect_files = ['package.json']
 detect_folders = ['node_modules']
 
 [bun]

@@ -3,36 +3,39 @@
 # ------------------------------------------------------------------------------
 set -g fish_greeting
 
-# Homebrew
+# Homebrew initialization (dynamic path discovery)
 if test -x /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
+else if test -x /usr/local/bin/brew
+    eval (/usr/local/bin/brew shellenv)
 end
 
-# Core Paths
-fish_add_path /opt/homebrew/opt/node/bin
-fish_add_path /opt/homebrew/opt/curl/bin
-fish_add_path /opt/homebrew/opt/python@3.14/libexec/bin
-fish_add_path $HOME/.local/bin
-
 # Java Configuration
-set -gx JAVA_HOME /opt/homebrew/opt/openjdk
-fish_add_path $JAVA_HOME/bin
+if set -q HOMEBREW_PREFIX; and test -d $HOMEBREW_PREFIX/opt/openjdk
+    set -gx JAVA_HOME $HOMEBREW_PREFIX/opt/openjdk
+end
 
 # PNPM Configuration
 set -gx PNPM_HOME "$HOME/Library/pnpm"
-fish_add_path $PNPM_HOME
+
+# Canonical PATH hierarchy (.local/bin > pnpm > java > homebrew > system)
+if set -q JAVA_HOME
+    fish_add_path -p $HOME/.local/bin $PNPM_HOME $JAVA_HOME/bin
+else
+    fish_add_path -p $HOME/.local/bin $PNPM_HOME
+end
 
 # ------------------------------------------------------------------------------
 # SHELL INTEGRATIONS & SECRETS
 # ------------------------------------------------------------------------------
-# Load local secrets
+# Load local secrets (in-process string parsing — no subprocess forks)
 if test -f ~/.secrets.env
-    for line in (grep -v '^#' ~/.secrets.env | grep -v '^\s*$')
+    for line in (string match -rv '^\s*(#|$)' < ~/.secrets.env)
         set -l clean (string replace --regex '^\s*export\s+' '' $line)
         set -l kv (string split -m 1 '=' $clean)
         if test (count $kv) -eq 2
             set -l key (string trim $kv[1])
-            set -l val (string trim $kv[2] | string replace --regex '^["\'](.*)["\'\']$' '$1')
+            set -l val (string trim $kv[2] | string replace --regex '^["\'](.*)["\']$' '$1')
             if string match --regex '^[A-Za-z_][A-Za-z0-9_]*$' -- $key >/dev/null
                 set -gx $key $val
             end
@@ -42,7 +45,9 @@ end
 
 # Starship Prompt
 if status is-interactive
-    /opt/homebrew/bin/starship init fish | source
+    if type -q starship
+        starship init fish | source
+    end
 end
 
 
@@ -70,3 +75,13 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias py='python3'
 alias node='node --no-warnings'
+
+# Modern CLI tools in interactive sessions
+if type -q bfs
+    alias find='bfs'
+end
+if type -q ugrep
+    alias grep='ugrep'
+    alias egrep='ugrep -E'
+    alias fgrep='ugrep -F'
+end
