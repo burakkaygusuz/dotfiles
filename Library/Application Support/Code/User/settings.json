@@ -61,7 +61,6 @@
   "terminal.integrated.initialHint": false,
   "terminal.external.osxExec": "Terminal.app",
   "terminal.integrated.enablePersistentSessions": false,
-  "terminal.integrated.persistentSessionReviveProcess": "onExit",
   "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.profiles.osx": {
     "bash": {
@@ -78,7 +77,7 @@
       ]
     },
     "fish": {
-      "path": "/opt/homebrew/bin/fish",
+      "path": "fish",
       "args": [
         "-l"
       ]
@@ -86,15 +85,6 @@
     "pwsh": {
       "path": "pwsh",
       "icon": "terminal-powershell"
-    }
-  },
-  "terminal.integrated.defaultProfile.linux": "fish",
-  "terminal.integrated.profiles.linux": {
-    "fish": {
-      "path": "/usr/bin/fish",
-      "args": [
-        "-l"
-      ]
     }
   },
   "terminal.integrated.allowedLinkSchemes": [
@@ -116,7 +106,7 @@
   // --- Languages (JS/TS, Python, .NET) ---
   "js/ts.suggest.autoImports": true,
   "js/ts.updateImportsOnFileMove.enabled": "always",
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "python.defaultInterpreterPath": "python3",
   "python.createEnvironment.trigger": "off",
   "python.languageServer": "Default",
   "yaml.schemas": {
@@ -136,9 +126,8 @@
   "redhat.telemetry.enabled": false,
   "sonarlint.disableTelemetry": true,
   "workbench.settings.enableNaturalLanguageSearch": false,
-  "extensions.autoCheckUpdates": false,
+  "update.mode": "default",
   "extensions.autoUpdate": "on",
-  "update.mode": "none",
   // --- Tools & Code Quality ---
   "prettier.singleQuote": true,
   "prettier.trailingComma": "none",
