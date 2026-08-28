@@ -51,6 +51,8 @@ if [ -z "$email" ]; then
   exit 1
 fi
 
+key_name="$(basename "${key_name:-id_ed25519}")"
+
 ssh_dir="$HOME/.ssh"
 config_dir="$ssh_dir/config.d"
 main_config="$ssh_dir/config"
@@ -59,16 +61,6 @@ key_path="$ssh_dir/$key_name"
 pub_key_path="$key_path.pub"
 include_line="Include ~/.ssh/config.d/*.conf"
 
-ensure_trailing_newline() {
-  local file="$1"
-
-  [ -s "$file" ] || return 0
-
-  if [ -n "$(tail -c 1 "$file")" ]; then
-    printf '\n' >>"$file"
-  fi
-}
-
 ensure_include_at_top() {
   local file="$1"
   local line="$2"
@@ -76,8 +68,6 @@ ensure_include_at_top() {
 
   tmp_file="$(mktemp "${TMPDIR:-/tmp}/setup-github-ssh.XXXXXX")"
   trap 'rm -f "$tmp_file"' RETURN
-
-  ensure_trailing_newline "$file"
 
   {
     printf '%s\n' "$line"
@@ -91,7 +81,7 @@ ensure_include_at_top() {
 }
 
 mkdir -p "$ssh_dir" "$config_dir"
-chmod 700 "$ssh_dir"
+chmod 700 "$ssh_dir" "$config_dir"
 
 if [ ! -f "$key_path" ]; then
   echo "Generating SSH key at $key_path..."
@@ -99,6 +89,9 @@ if [ ! -f "$key_path" ]; then
 else
   echo "SSH key already exists at $key_path"
 fi
+
+chmod 600 "$key_path"
+[ -f "$pub_key_path" ] && chmod 644 "$pub_key_path"
 
 touch "$main_config"
 chmod 600 "$main_config"
@@ -114,6 +107,7 @@ Host github.com
   IgnoreUnknown UseKeychain
   AddKeysToAgent yes
   UseKeychain yes
+  IdentitiesOnly yes
   IdentityFile $key_path
 EOF
 chmod 600 "$managed_config"
@@ -124,7 +118,12 @@ ssh-add --apple-use-keychain "$key_path"
 echo
 echo "GitHub SSH bootstrap complete."
 echo "Public key: $pub_key_path"
+if [ -f "$pub_key_path" ]; then
+  echo "Fingerprint:"
+  ssh-keygen -lf "$pub_key_path"
+fi
 echo "Copy it with:"
 echo "  pbcopy < \"$pub_key_path\""
-echo "Then add it to your GitHub account and test with:"
-echo "  ssh -T git@github.com"
+echo "Then add it to your GitHub account (Settings -> SSH and GPG Keys -> New SSH Key, Key type: Authentication & Signing Key)"
+echo "Test authentication with:"
+echo "  make verify-ssh"
