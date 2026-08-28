@@ -1,12 +1,11 @@
 [user]
 	name = Burak Kaygusuz
+	signingkey = ~/.ssh/id_ed25519.pub
 
 # Keep private identity details out of the public repo.
 [include]
 	path = ~/.gitconfig.local
 
-[gui]
-	fontdiff = -family \"GeistMono Nerd Font Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 [init]
 	defaultBranch = main
 [core]
@@ -32,14 +31,19 @@
 	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
 	tool = vscode
+	conflictstyle = zdiff3
 [mergetool "vscode"]
 	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [help]
 	autocorrect = 20
 [color]
 	ui = auto
+[gpg]
+	format = ssh
 [commit]
-	gpgsign = false
+	gpgsign = true
+[tag]
+	gpgsign = true
 [column]
 	ui = auto
 [branch]
