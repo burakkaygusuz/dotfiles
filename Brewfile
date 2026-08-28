@@ -1,4 +1,3 @@
-tap "oven-sh/bun", trusted: true
 brew "bfs"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
@@ -18,8 +17,6 @@ brew "maven"
 brew "node"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.14"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Autoformat shell script source code
@@ -31,7 +28,7 @@ brew "uv"
 # Rust Token Killer - CLI wrapper to silence noisy commands
 brew "rtk"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
-brew "oven-sh/bun/bun"
+brew "bun"
 # Comprehensive macOS cleanup and application uninstall tool
 brew "mole"
 # Web browser focusing on privacy
@@ -50,6 +47,13 @@ cask "visual-studio-code"
 cask "vlc"
 # Native desktop client for WhatsApp
 cask "whatsapp"
+# Nerd Fonts
+cask "font-blex-mono-nerd-font"
+cask "font-commit-mono-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-geist-mono-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-meslo-lg-nerd-font"
 # VS Code extensions
 vscode "astro-build.astro-vscode"
 vscode "bradlc.vscode-tailwindcss"
@@ -62,7 +66,6 @@ vscode "github.copilot-chat"
 vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
 vscode "mkhl.shfmt"
-vscode "meta.pyrefly"
 vscode "miguelsolorio.fluent-icons"
 vscode "miguelsolorio.symbols"
 vscode "ms-azuretools.vscode-containers"
@@ -72,7 +75,6 @@ vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
 vscode "ms-vscode.extension-test-runner"
-vscode "oracle.oracle-java"
 vscode "oven.bun-vscode"
 vscode "redhat.java"
 vscode "redhat.vscode-xml"
