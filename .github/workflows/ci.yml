@@ -12,10 +12,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      
-      - name: Run shellcheck
+
+      - name: Run shellcheck and shell syntax validation
         run: |
           find . -name "*.sh" -print0 | xargs -0 shellcheck
+          bash -n ssh/setup-github-ssh.sh
+          zsh -n dot_zshrc
 
   test-macos:
     runs-on: macos-latest
@@ -23,8 +25,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Test symlinks and wrappers
+      - name: Install test dependencies
         run: |
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install chezmoi
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install chezmoi fish
+
+      - name: Validate fish config syntax
+        run: |
+          fish -n dot_config/fish/config.fish
+
+      - name: Apply dotfiles
+        run: |
           make symlinks
-          make wrappers
+
+      - name: Verify idempotency with make diff
+        run: |
+          make diff
+
+      - name: Verify installed dotfiles existence
+        run: |
+          test -f "$HOME/.zshrc"
+          test -f "$HOME/.gitconfig"
+          test -f "$HOME/.gitignore_global"
+          test -f "$HOME/.config/starship.toml"
+          test -f "$HOME/.config/fish/config.fish"
+
+      - name: Verify no unmanaged files leaked into HOME
+        run: |
+          ! test -e "$HOME/ssh"
+          ! test -e "$HOME/LICENSE"
+          ! test -e "$HOME/README.md"
+          ! test -e "$HOME/Makefile"
+          ! test -e "$HOME/Brewfile"
+
+      - name: Verify git and SSH configuration parsing
+        run: |
+          git config --list >/dev/null
+          ssh -G git@github.com | grep -E '^(hostname|user|identityfile|identitiesonly)' || true
