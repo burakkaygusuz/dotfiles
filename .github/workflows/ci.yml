@@ -13,11 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Run shellcheck and shell syntax validation
+      - name: Run shellcheck
         run: |
           find . -name "*.sh" -print0 | xargs -0 shellcheck
-          bash -n ssh/setup-github-ssh.sh
-          zsh -n dot_zshrc
 
   test-macos:
     runs-on: macos-latest
@@ -29,8 +27,10 @@ jobs:
         run: |
           HOMEBREW_NO_AUTO_UPDATE=1 brew install chezmoi fish
 
-      - name: Validate fish config syntax
+      - name: Validate shell syntax (bash, zsh, fish)
         run: |
+          bash -n ssh/setup-github-ssh.sh
+          zsh -n dot_zshrc
           fish -n dot_config/fish/config.fish
 
       - name: Apply dotfiles
