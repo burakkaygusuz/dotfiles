@@ -61,30 +61,27 @@
   "terminal.integrated.initialHint": false,
   "terminal.external.osxExec": "Terminal.app",
   "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.profiles.osx": {
+    "fish": {
+      "path": "/opt/homebrew/bin/fish",
+      "args": [
+        "-l"
+      ]
+    },
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": [
+        "-l"
+      ]
+    },
     "bash": {
-      "path": "bash",
+      "path": "/bin/bash",
       "args": [
         "-l"
       ],
       "icon": "terminal-bash"
-    },
-    "zsh": {
-      "path": "zsh",
-      "args": [
-        "-l"
-      ]
-    },
-    "fish": {
-      "path": "fish",
-      "args": [
-        "-l"
-      ]
-    },
-    "pwsh": {
-      "path": "pwsh",
-      "icon": "terminal-powershell"
     }
   },
   "terminal.integrated.allowedLinkSchemes": [
@@ -121,6 +118,16 @@
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt"
+  },
   // --- Privacy, Updates & Telemetry ---
   "telemetry.telemetryLevel": "off",
   "redhat.telemetry.enabled": false,
@@ -137,7 +144,6 @@
   "prettier.arrowParens": "always",
   "prettier.endOfLine": "auto",
   "eslint.enable": true,
-  "eslint.useFlatConfig": true,
   "eslint.run": "onType",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
@@ -182,6 +188,7 @@
     "dockercompose": true
   },
   "chat.agent.maxRequests": 100,
+  "chat.stickyScroll.enabled": true,
   "chat.mcp.access": "all",
   "chat.mcp.gallery.enabled": true,
   "chat.tools.riskAssessment.enabled": true
