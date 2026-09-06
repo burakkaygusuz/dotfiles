@@ -1,5 +1,6 @@
 SHELL := /bin/bash
-DOTFILES_DIR := $(shell pwd)
+DOTFILES_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+export PATH := /opt/homebrew/bin:$(PATH)
 
 .PHONY: all macos brew symlinks symlinks-force diff shell verify-ssh help
 
@@ -23,11 +24,10 @@ macos:
 
 brew: macos
 	@echo "🍺 Installing Homebrew and packages..."
-	@if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ] && [ ! -x /usr/local/bin/brew ]; then \
+	@if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ]; then \
 		NONINTERACTIVE=1 /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 	fi
-	@BREW_BIN=$$(command -v /opt/homebrew/bin/brew || command -v /usr/local/bin/brew || command -v brew); \
-	eval "$$($$BREW_BIN shellenv)" && $$BREW_BIN bundle --file=$(DOTFILES_DIR)/Brewfile
+	@/opt/homebrew/bin/brew bundle --file=$(DOTFILES_DIR)/Brewfile
 
 diff:
 	@echo "🔍 Checking dotfiles diff with Chezmoi..."
@@ -61,7 +61,9 @@ shell:
 	if ! grep -qxF "$$FISH_PATH" /etc/shells; then \
 		echo "$$FISH_PATH" | sudo tee -a /etc/shells; \
 	fi; \
-	chsh -s "$$FISH_PATH"
+	if [ "$$(dscl . -read /Users/$$USER UserShell 2>/dev/null | awk '{print $$2}')" != "$$FISH_PATH" ]; then \
+		chsh -s "$$FISH_PATH"; \
+	fi
 
 verify-ssh:
 	@echo "🔍 Inspecting effective SSH config for github.com..."

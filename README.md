@@ -45,7 +45,7 @@ If `fish` is not registered in `/etc/shells`, you will be prompted for your pass
 
 ### 3. Bootstrap GitHub SSH (Optional)
 
-The SSH bootstrap is intentionally separate from `install.sh`.
+The SSH bootstrap is intentionally separate from `make all`.
 It can create an `ed25519` key if needed, add a managed GitHub host block via `~/.ssh/config.d/github-dotfiles.conf`, and load the key into the macOS keychain without overwriting your existing SSH config.
 The script requires an explicit `--email` argument for the SSH key label.
 
