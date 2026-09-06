@@ -74,11 +74,6 @@ symbol = ' '
 format = 'via [$symbol($version )]($style)'
 style = 'bold cyan'
 
-[java]
-symbol = '󰬷 '
-format = 'via [$symbol($version )]($style)'
-style = 'bold red'
-
 [package]
 symbol = '󰏗 '
 format = 'is [$symbol$version]($style) '
@@ -103,13 +98,13 @@ disabled = false
 detect_files = ['k8s', '.kube']
 
 [aws]
-symbol = ' '
+symbol = ''
 format = 'on [$symbol$profile]($style) '
 style = 'bold yellow'
 force_display = false
 
 [gcloud]
-symbol = ' '
+symbol = ''
 format = 'on [$symbol$project]($style) '
 style = 'bold blue'
 
