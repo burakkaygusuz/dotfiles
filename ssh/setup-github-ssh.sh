@@ -115,6 +115,11 @@ chmod 600 "$managed_config"
 echo "Adding key to ssh-agent and Apple keychain..."
 ssh-add --apple-use-keychain "$key_path"
 
+echo "Configuring Git SSH signing in ~/.gitconfig.local..."
+git config --file "$HOME/.gitconfig.local" user.signingkey "$pub_key_path"
+git config --file "$HOME/.gitconfig.local" commit.gpgsign true
+git config --file "$HOME/.gitconfig.local" tag.gpgsign true
+
 echo
 echo "GitHub SSH bootstrap complete."
 echo "Public key: $pub_key_path"
