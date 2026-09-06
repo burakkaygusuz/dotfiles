@@ -1,26 +1,24 @@
 # Deduplicate PATH automatically in Zsh
 typeset -U path PATH
 
-# Homebrew initialization (dynamic path discovery)
-if [ -x /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [ -x /usr/local/bin/brew ]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-fi
+# Homebrew environment & telemetry opt-out
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_AUTO_UPDATE_SECS=86400
+export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=1
 
-# Java Configuration
-if [ -n "$HOMEBREW_PREFIX" ] && [ -d "$HOMEBREW_PREFIX/opt/openjdk" ]; then
-    export JAVA_HOME="$HOMEBREW_PREFIX/opt/openjdk"
+# Homebrew initialization (Apple Silicon)
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 fi
 
 # PNPM Configuration
 export PNPM_HOME="$HOME/Library/pnpm"
 
-# Canonical PATH hierarchy (.local/bin > pnpm > java > homebrew > system)
+# Canonical PATH hierarchy (.local/bin > pnpm > homebrew > system)
 path=(
     "$HOME/.local/bin"
     "$PNPM_HOME"
-    ${JAVA_HOME:+"$JAVA_HOME/bin"}
     $path
 )
 export PATH
@@ -30,22 +28,28 @@ export PATH
 # ------------------------------------------------------------------------------
 # Load local secrets (key=value parser — no arbitrary code execution)
 if [ -f ~/.secrets.env ]; then
-    while IFS= read -r line; do
-        # skip comments and blank lines
-        [[ "$line" =~ ^[[:space:]]*# ]] && continue
-        [[ -z "${line// }" ]] && continue
-        # strip optional leading "export "
-        line="${line#export }"
-        # extract key and value
-        local key="${line%%=*}"
-        local val="${line#*=}"
-        # only export valid identifiers
-        if [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
-            val="${val#\'}"; val="${val%\'}"
-            val="${val#\"}"; val="${val%\"}"
-            export "$key=$val"
-        fi
-    done < ~/.secrets.env
+    () {
+        local line key val
+        while IFS= read -r line || [ -n "$line" ]; do
+            # skip comments and blank lines
+            [[ "$line" =~ ^[[:space:]]*# ]] && continue
+            [[ -z "${line// }" ]] && continue
+            # strip optional leading "export "
+            line="${line#export }"
+            # extract key and value
+            key="${line%%=*}"
+            key="${key// }"
+            val="${line#*=}"
+            val="${val#"${val%%[! ]*}"}"
+            val="${val%"${val##*[! ]}"}"
+            # only export valid identifiers
+            if [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
+                val="${val#\'}"; val="${val%\'}"
+                val="${val#\"}"; val="${val%\"}"
+                export "$key=$val"
+            fi
+        done < ~/.secrets.env
+    }
 fi
 
 # ------------------------------------------------------------------------------
@@ -77,10 +81,6 @@ fi
 # ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY (Opt-out)
 # ------------------------------------------------------------------------------
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_AUTO_UPDATE_SECS=86400
-export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=1
-export HOMEBREW_NO_ENV_HINTS=1
 export VSCODE_CLI_TELEMETRY_OPTOUT=1
 export SHELL_SESSIONS_DISABLE=1
 export PYTHON_HISTORY=/dev/null
