@@ -3,6 +3,10 @@
 # ------------------------------------------------------------------------------
 set -g fish_greeting
 
+# Locale Settings (Force English for Git & CLI)
+set -gx LANG en_US.UTF-8
+set -gx LC_ALL en_US.UTF-8
+
 # Homebrew initialization (Apple Silicon)
 if test -x /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv fish | source
@@ -33,9 +37,13 @@ if test -f ~/.secrets.env
 end
 
 # Starship Prompt
+function starship_transient_prompt_func
+    echo -n -e "\e[1;37m \e[0m"
+end
 if status is-interactive
     if type -q starship
         starship init fish | source
+        enable_transience
     end
 end
 

@@ -17,6 +17,10 @@ path=(
 )
 export PATH
 
+# Locale Settings (Force English for Git & CLI)
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # ------------------------------------------------------------------------------
 # SHELL INTEGRATIONS & SECRETS
 # ------------------------------------------------------------------------------
@@ -52,7 +56,6 @@ fi
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
-setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
@@ -66,6 +69,12 @@ if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; t
 else
     compinit -C
 fi
+
+# Window title (current directory basename)
+function set_win_title() {
+    echo -ne "\033]0; $(basename "$PWD") \007"
+}
+precmd_functions+=(set_win_title)
 
 # Prompt
 if command -v starship >/dev/null 2>&1; then
