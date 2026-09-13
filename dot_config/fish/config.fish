@@ -3,12 +3,6 @@
 # ------------------------------------------------------------------------------
 set -g fish_greeting
 
-# Homebrew environment & telemetry opt-out
-set -gx HOMEBREW_NO_ANALYTICS 1
-set -gx HOMEBREW_NO_ENV_HINTS 1
-set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
-set -gx HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 1
-
 # Homebrew initialization (Apple Silicon)
 if test -x /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv fish | source
@@ -45,14 +39,21 @@ if status is-interactive
     end
 end
 
-
 # ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY (Opt-out)
 # ------------------------------------------------------------------------------
-set -gx VSCODE_CLI_TELEMETRY_OPTOUT 1
+set -gx HOMEBREW_NO_ANALYTICS 1
+set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
+set -gx HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 1
+set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx SHELL_SESSIONS_DISABLE 1
 set -gx PYTHON_HISTORY /dev/null
 set -gx PYTHONSTARTUP /dev/null
+set -gx VSCODE_CLI_TELEMETRY_OPTOUT 1
+set -gx CLAUDE_CODE_ENABLE_TELEMETRY 0
+set -gx DISABLE_TELEMETRY 1
+set -gx NEXT_TELEMETRY_DISABLED 1
+set -gx ASTRO_TELEMETRY_DISABLED 1
 
 # ------------------------------------------------------------------------------
 # ALIASES (Interactive only)
