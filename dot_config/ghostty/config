@@ -3,14 +3,13 @@ theme = GitHub Dark
 background-opacity = 0.85
 background-blur = 20
 macos-titlebar-style = tabs
-unfocused-split-opacity = 0.7
 window-padding-x = 20
 window-padding-y = 20
 window-padding-balance = true
 window-vsync = true
 
 # --- [ TYPOGRAPHY ] ---
-font-family = "GeistMono Nerd Font Mono"
+font-family = "BlexMono Nerd Font Mono"
 font-size = 14
 font-thicken = true
 font-thicken-strength = 100
@@ -39,8 +38,17 @@ macos-option-as-alt = left
 confirm-close-surface = true
 window-inherit-working-directory = true
 window-save-state = "default"
-working-directory = home
+working-directory = /Users/burak
+
+# --- [ SPLIT PANES & MULTIPLEXING ] ---
+unfocused-split-opacity = 0.70
+unfocused-split-fill = #101216
+split-divider-color = #30363d
+split-inherit-working-directory = true
+split-preserve-zoom = navigation
+focus-follows-mouse = false
 
 # --- [ KEYBINDINGS ] ---
+# Splits (Cmd+D for right, Cmd+Shift+D for down)
 keybind = super+d=new_split:right
 keybind = super+shift+d=new_split:down
