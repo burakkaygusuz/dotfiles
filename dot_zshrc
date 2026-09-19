@@ -13,6 +13,7 @@ export PNPM_HOME="$HOME/Library/pnpm"
 path=(
     "$HOME/.local/bin"
     "$PNPM_HOME"
+    "/opt/homebrew/opt/python@3.14/libexec/bin"
     $path
 )
 export PATH

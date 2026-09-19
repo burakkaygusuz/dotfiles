@@ -16,7 +16,7 @@ end
 set -gx PNPM_HOME "$HOME/Library/pnpm"
 
 # Canonical PATH hierarchy (.local/bin > pnpm > homebrew > system)
-fish_add_path -g -P -p $HOME/.local/bin $PNPM_HOME
+fish_add_path -g -P -p $HOME/.local/bin $PNPM_HOME /opt/homebrew/opt/python@3.14/libexec/bin
 
 # ------------------------------------------------------------------------------
 # SHELL INTEGRATIONS & SECRETS
