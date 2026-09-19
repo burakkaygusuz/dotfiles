@@ -36,7 +36,7 @@ diff:
 	fi
 	@chezmoi diff --source $(DOTFILES_DIR)
 
-symlinks:
+symlinks: brew
 	@echo "🔗 Applying dotfiles with Chezmoi..."
 	@if ! command -v chezmoi >/dev/null 2>&1; then \
 		echo "Error: Chezmoi is not installed. Run 'make brew' first."; exit 1; \
@@ -52,7 +52,7 @@ symlinks-force:
 	@chezmoi apply --source $(DOTFILES_DIR) --force
 	@echo "✅ All dotfiles force applied successfully with Chezmoi."
 
-shell:
+shell: brew
 	@echo "🐚 Setting default shell to fish..."
 	@FISH_PATH=$$(command -v fish || true); \
 	if [ -z "$$FISH_PATH" ]; then \
