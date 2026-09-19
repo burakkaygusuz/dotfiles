@@ -69,4 +69,13 @@ verify-ssh:
 	@echo "🔍 Inspecting effective SSH config for github.com..."
 	@ssh -G git@github.com | grep -E '^(hostname|user|identityfile|identitiesonly)' || true
 	@echo "🔑 Testing GitHub SSH authentication..."
-	@ssh -T git@github.com || true
+	@if output="$$(ssh -T git@github.com 2>&1)"; then \
+		status=0; \
+	else \
+		status=$$?; \
+	fi; \
+	printf '%s\n' "$$output"; \
+	if [ "$$status" -ne 1 ] || [[ "$$output" != *"successfully authenticated"* ]]; then \
+		echo "Error: GitHub SSH authentication failed." >&2; \
+		exit 1; \
+	fi

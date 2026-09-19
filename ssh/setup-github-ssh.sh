@@ -88,10 +88,18 @@ if [ ! -f "$key_path" ]; then
   ssh-keygen -t ed25519 -C "$email" -f "$key_path"
 else
   echo "SSH key already exists at $key_path"
+  if [ ! -f "$pub_key_path" ]; then
+    echo "Deriving public key at $pub_key_path..."
+    ssh-keygen -y -f "$key_path" >"$pub_key_path"
+  fi
 fi
 
 chmod 600 "$key_path"
-[ -f "$pub_key_path" ] && chmod 644 "$pub_key_path"
+if [ ! -s "$pub_key_path" ]; then
+  echo "Public key is missing or empty: $pub_key_path" >&2
+  exit 1
+fi
+chmod 644 "$pub_key_path"
 
 touch "$main_config"
 chmod 600 "$main_config"
