@@ -37,9 +37,9 @@ jobs:
         run: |
           make symlinks
 
-      - name: Verify idempotency with make diff
+      - name: Verify idempotency with chezmoi
         run: |
-          make diff
+          chezmoi verify --source "$GITHUB_WORKSPACE"
 
       - name: Verify installed dotfiles existence
         run: |
