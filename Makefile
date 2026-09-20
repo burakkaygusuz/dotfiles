@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-DOTFILES_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+DOTFILES_DIR := $(shell cd "$$(dirname "$(strip $(MAKEFILE_LIST))")" && pwd -P)
 export PATH := /opt/homebrew/bin:$(PATH)
 
 .PHONY: all macos brew symlinks symlinks-force diff shell verify-ssh help
@@ -14,7 +14,8 @@ help:
 	@echo "  make shell           - Set fish as the default shell"
 	@echo "  make verify-ssh      - Verify GitHub SSH configuration and connection"
 
-all: macos brew symlinks shell
+all: macos brew
+	@$(MAKE) symlinks shell
 
 macos:
 	@echo "🍏 Checking for Apple Silicon..."
@@ -27,21 +28,25 @@ brew: macos
 	@if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ]; then \
 		NONINTERACTIVE=1 /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 	fi
-	@/opt/homebrew/bin/brew bundle --file=$(DOTFILES_DIR)/Brewfile
+	@HOMEBREW_NO_ANALYTICS=1 \
+	HOMEBREW_AUTO_UPDATE_SECS=86400 \
+	HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=1 \
+	HOMEBREW_NO_ENV_HINTS=1 \
+	/opt/homebrew/bin/brew bundle --file="$(DOTFILES_DIR)/Brewfile"
 
 diff:
 	@echo "🔍 Checking dotfiles diff with Chezmoi..."
 	@if ! command -v chezmoi >/dev/null 2>&1; then \
 		echo "Error: Chezmoi is not installed. Run 'make brew' first."; exit 1; \
 	fi
-	@chezmoi diff --source $(DOTFILES_DIR)
+	@chezmoi diff --source "$(DOTFILES_DIR)"
 
-symlinks: brew
+symlinks:
 	@echo "🔗 Applying dotfiles with Chezmoi..."
 	@if ! command -v chezmoi >/dev/null 2>&1; then \
 		echo "Error: Chezmoi is not installed. Run 'make brew' first."; exit 1; \
 	fi
-	@chezmoi apply --source $(DOTFILES_DIR)
+	@chezmoi apply --source "$(DOTFILES_DIR)"
 	@echo "✅ All dotfiles applied successfully with Chezmoi."
 
 symlinks-force:
@@ -49,10 +54,10 @@ symlinks-force:
 	@if ! command -v chezmoi >/dev/null 2>&1; then \
 		echo "Error: Chezmoi is not installed. Run 'make brew' first."; exit 1; \
 	fi
-	@chezmoi apply --source $(DOTFILES_DIR) --force
+	@chezmoi apply --source "$(DOTFILES_DIR)" --force
 	@echo "✅ All dotfiles force applied successfully with Chezmoi."
 
-shell: brew
+shell:
 	@echo "🐚 Setting default shell to fish..."
 	@FISH_PATH=$$(command -v fish || true); \
 	if [ -z "$$FISH_PATH" ]; then \
