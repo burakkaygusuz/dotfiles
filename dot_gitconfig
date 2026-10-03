@@ -26,6 +26,7 @@
 	algorithm = histogram
 	mnemonicPrefix = true
 	renames = true
+	colorMoved = default
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
@@ -43,6 +44,8 @@
 	ui = auto
 [branch]
 	sort = -committerdate
+[gc]
+	writeCommitGraph = true
 [rerere]
 	enabled = true
 	autoUpdate = true
