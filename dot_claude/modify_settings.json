@@ -1,0 +1,5 @@
+#!/bin/bash
+# Chezmoi modify script: sets only statusLine in ~/.claude/settings.json, keeping every other key.
+current=$(cat)
+[ -n "$current" ] || current='{}'
+jq '.statusLine = {type: "command", command: "~/.claude/statusline.sh", padding: 1}' <<<"$current"
