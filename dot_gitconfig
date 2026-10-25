@@ -35,7 +35,7 @@
 [mergetool "vscode"]
 	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [help]
-	autocorrect = 20
+	autocorrect = prompt
 [color]
 	ui = auto
 [gpg]

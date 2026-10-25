@@ -26,11 +26,19 @@ key_name="id_ed25519"
 while [ "$#" -gt 0 ]; do
   case "$1" in
   --email)
-    email="${2:-}"
+    if [ "$#" -lt 2 ] || [[ "$2" == -* ]]; then
+      echo "Missing value for --email." >&2
+      exit 1
+    fi
+    email="$2"
     shift 2
     ;;
   --key-name)
-    key_name="${2:-}"
+    if [ "$#" -lt 2 ] || [[ "$2" == -* ]]; then
+      echo "Missing value for --key-name." >&2
+      exit 1
+    fi
+    key_name="$2"
     shift 2
     ;;
   -h | --help)
@@ -127,6 +135,14 @@ echo "Configuring Git SSH signing in ~/.gitconfig.local..."
 git config --file "$HOME/.gitconfig.local" user.signingkey "$pub_key_path"
 git config --file "$HOME/.gitconfig.local" commit.gpgsign true
 git config --file "$HOME/.gitconfig.local" tag.gpgsign true
+
+allowed_signers="$ssh_dir/allowed_signers"
+pub_key="$(cat "$pub_key_path")"
+allowed_line="$email namespaces=\"git\" $pub_key"
+touch "$allowed_signers"
+chmod 600 "$allowed_signers"
+grep -qxF "$allowed_line" "$allowed_signers" || printf '%s\n' "$allowed_line" >>"$allowed_signers"
+git config --file "$HOME/.gitconfig.local" gpg.ssh.allowedSignersFile "$allowed_signers"
 
 echo
 echo "GitHub SSH bootstrap complete."
