@@ -3,9 +3,9 @@
 # ------------------------------------------------------------------------------
 set -g fish_greeting
 
-# Locale Settings (Force English for Git & CLI)
+# Locale Settings (UTF-8 for CLI tools; LANG sets the default for all categories)
 set -gx LANG en_US.UTF-8
-set -gx LC_ALL en_US.UTF-8
+set -gx LC_CTYPE en_US.UTF-8
 
 # Homebrew initialization (Apple Silicon)
 if test -x /opt/homebrew/bin/brew
@@ -74,7 +74,6 @@ if status is-interactive
     alias gc='git commit'
     alias gp='git push'
     alias gl='git log --oneline --graph --decorate --all'
-    alias py='python3'
     alias node='node --no-warnings'
 
     # Modern CLI tools in interactive sessions

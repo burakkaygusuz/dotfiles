@@ -1,7 +1,6 @@
 README.md
 Makefile
 Brewfile
-.github
-.chezmoiignore
 ssh
 LICENSE
+.github

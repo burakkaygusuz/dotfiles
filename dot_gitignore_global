@@ -23,7 +23,6 @@ Temporary Items
 *.swo
 *~
 .direnv/
-.envrc
 .secrets.env
 
 # Git merge artifacts
