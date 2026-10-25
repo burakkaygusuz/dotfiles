@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -16,6 +19,7 @@ jobs:
       - name: Run shellcheck
         run: |
           find . -name "*.sh" -print0 | xargs -0 shellcheck
+          shellcheck -s bash dot_claude/modify_settings.json
 
   test-macos:
     runs-on: macos-latest
@@ -25,17 +29,29 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install chezmoi fish
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install chezmoi fish jq
 
       - name: Validate shell syntax (bash, zsh, fish)
         run: |
           bash -n ssh/setup-github-ssh.sh
           zsh -n dot_zshrc
           fish -n dot_config/fish/config.fish
+          fish_indent --check dot_config/fish/config.fish
+
+      - name: Check Brewfile parses
+        run: |
+          brew bundle list --file=Brewfile >/dev/null
+
+      - name: Smoke test statusline
+        run: |
+          out="$(echo '{"model":{"display_name":"Claude Test"}}' | bash dot_claude/executable_statusline.sh)"
+          echo "$out"
+          test -n "$out"
+          grep -q "Claude Test" <<<"$out"
 
       - name: Apply dotfiles
         run: |
-          make symlinks
+          make apply
 
       - name: Verify idempotency with chezmoi
         run: |
@@ -52,6 +68,7 @@ jobs:
       - name: Verify no unmanaged files leaked into HOME
         run: |
           ! test -e "$HOME/ssh"
+          ! test -e "$HOME/.github"
           ! test -e "$HOME/LICENSE"
           ! test -e "$HOME/README.md"
           ! test -e "$HOME/Makefile"
