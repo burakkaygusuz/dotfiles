@@ -2,20 +2,20 @@ SHELL := /bin/bash
 DOTFILES_DIR := $(shell cd "$$(dirname "$(strip $(MAKEFILE_LIST))")" && pwd -P)
 export PATH := /opt/homebrew/bin:$(PATH)
 
-.PHONY: all macos brew symlinks symlinks-force diff shell verify-ssh help
+.PHONY: all macos brew apply apply-force diff shell verify-ssh help
 
 help:
 	@echo "Available commands:"
-	@echo "  make all             - Run the full setup (brew, symlinks, shell)"
+	@echo "  make all             - Run the full setup (brew, apply, shell)"
 	@echo "  make brew            - Install Homebrew and packages from Brewfile"
 	@echo "  make diff            - Show differences before applying dotfiles"
-	@echo "  make symlinks        - Safely apply dotfiles with Chezmoi (prompts on conflict)"
-	@echo "  make symlinks-force  - Force apply dotfiles with Chezmoi (overwrites conflicts)"
+	@echo "  make apply           - Safely apply dotfiles with Chezmoi (prompts on conflict)"
+	@echo "  make apply-force     - Force apply dotfiles with Chezmoi (overwrites conflicts)"
 	@echo "  make shell           - Set fish as the default shell"
 	@echo "  make verify-ssh      - Verify GitHub SSH configuration and connection"
 
 all: macos brew
-	@$(MAKE) symlinks shell
+	@$(MAKE) apply shell
 
 macos:
 	@echo "🍏 Checking for Apple Silicon..."
@@ -41,7 +41,7 @@ diff:
 	fi
 	@chezmoi diff --source "$(DOTFILES_DIR)"
 
-symlinks:
+apply:
 	@echo "🔗 Applying dotfiles with Chezmoi..."
 	@if ! command -v chezmoi >/dev/null 2>&1; then \
 		echo "Error: Chezmoi is not installed. Run 'make brew' first."; exit 1; \
@@ -49,7 +49,7 @@ symlinks:
 	@chezmoi apply --source "$(DOTFILES_DIR)"
 	@echo "✅ All dotfiles applied successfully with Chezmoi."
 
-symlinks-force:
+apply-force:
 	@echo "⚠️ Force applying dotfiles with Chezmoi..."
 	@if ! command -v chezmoi >/dev/null 2>&1; then \
 		echo "Error: Chezmoi is not installed. Run 'make brew' first."; exit 1; \
