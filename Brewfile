@@ -27,6 +27,12 @@ brew "rtk"
 brew "bun"
 # Comprehensive macOS cleanup and application uninstall tool
 brew "mole"
+# GitHub's official command-line tool
+brew "gh"
+# Static analysis tool for shell scripts
+brew "shellcheck"
+# Fast, disk space efficient Node.js package manager
+brew "pnpm"
 # Web browser focusing on privacy
 cask "brave-browser"
 # GPU-accelerated terminal emulator
