@@ -37,8 +37,8 @@ make all
 You can also inspect changes before applying or run individual targets:
 
 - `make diff` — Preview differences between this repo and your `$HOME` files.
-- `make symlinks` — Apply dotfiles safely (Chezmoi prompts if a local file was modified).
-- `make symlinks-force` — Force overwrite local changes with repo versions.
+- `make apply` — Apply dotfiles safely (Chezmoi prompts if a local file was modified).
+- `make apply-force` — Force overwrite local changes with repo versions.
 - `make brew` / `make shell` — Run package install or shell setup independently.
 
 This repository targets Apple Silicon Macs only and assumes Homebrew is installed in `/opt/homebrew`.
@@ -51,7 +51,6 @@ It can create an `ed25519` key if needed, add a managed GitHub host block via `~
 The script requires an explicit `--email` argument for the SSH key label.
 
 ```bash
-chmod +x ssh/setup-github-ssh.sh
 ./ssh/setup-github-ssh.sh --email you@example.com
 ```
 
@@ -69,7 +68,7 @@ If you already have custom `Host github.com` rules in `~/.ssh/config`, review th
 
 You still need to add the copied public key to your GitHub account (**Settings -> SSH and GPG Keys -> New SSH Key**, selecting **Authentication & Signing Key**) before SSH authentication and automatic commit signing verification will work.
 
-Git commit signing is configured out of the box using native SSH signing (`gpg.format = ssh`), providing verified commit badges on GitHub without requiring GPG or GPG agent dependencies.
+Git commit signing is configured out of the box using native SSH signing (`gpg.format = ssh`), providing verified commit badges on GitHub without requiring GPG or GPG agent dependencies. The bootstrap script also writes `~/.ssh/allowed_signers`, which local `git log --show-signature` verification needs.
 
 ### 4. Restart and Verify
 
@@ -90,8 +89,10 @@ brew bundle dump --describe --force --file=~/dotfiles/Brewfile
 ### Cleanup packages not in Brewfile
 
 ```bash
-brew bundle cleanup --file=~/dotfiles/Brewfile --force
+brew bundle cleanup --file=~/dotfiles/Brewfile
 ```
+
+This is a dry run that lists packages not in the Brewfile. Add `--force` only after reviewing the list.
 
 ### Troubleshooting
 
