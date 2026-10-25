@@ -4,3 +4,5 @@ Brewfile
 ssh
 LICENSE
 .github
+.editorconfig
+.gitignore
