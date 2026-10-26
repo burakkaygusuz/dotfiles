@@ -62,6 +62,9 @@ set -gx CLAUDE_CODE_ENABLE_TELEMETRY 0
 set -gx DISABLE_TELEMETRY 1
 set -gx NEXT_TELEMETRY_DISABLED 1
 set -gx ASTRO_TELEMETRY_DISABLED 1
+set -gx PI_TELEMETRY 0
+set -gx CBM_LOG_LEVEL error
+set -gx CBM_INDEX_LOG 0
 
 # ------------------------------------------------------------------------------
 # ALIASES (Interactive only)

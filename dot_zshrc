@@ -97,6 +97,9 @@ export CLAUDE_CODE_ENABLE_TELEMETRY=0
 export DISABLE_TELEMETRY=1
 export NEXT_TELEMETRY_DISABLED=1
 export ASTRO_TELEMETRY_DISABLED=1
+export PI_TELEMETRY=0
+export CBM_LOG_LEVEL=error
+export CBM_INDEX_LOG=0
 
 # ------------------------------------------------------------------------------
 # ALIASES

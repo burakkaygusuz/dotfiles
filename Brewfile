@@ -29,6 +29,8 @@ brew "bun"
 brew "mole"
 # GitHub's official command-line tool
 brew "gh"
+# Git extension for versioning large files
+brew "git-lfs"
 # Static analysis tool for shell scripts
 brew "shellcheck"
 # Fast, disk space efficient Node.js package manager
