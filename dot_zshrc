@@ -98,8 +98,6 @@ export DISABLE_TELEMETRY=1
 export NEXT_TELEMETRY_DISABLED=1
 export ASTRO_TELEMETRY_DISABLED=1
 export PI_TELEMETRY=0
-export CBM_LOG_LEVEL=error
-export CBM_INDEX_LOG=0
 
 # ------------------------------------------------------------------------------
 # ALIASES
@@ -112,11 +110,3 @@ alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias node='node --no-warnings'
-
-# Modern CLI tools in interactive sessions
-command -v bfs >/dev/null 2>&1 && alias find='bfs'
-if command -v ugrep >/dev/null 2>&1; then
-    alias grep='ugrep'
-    alias egrep='ugrep -E'
-    alias fgrep='ugrep -F'
-fi

@@ -63,8 +63,6 @@ set -gx DISABLE_TELEMETRY 1
 set -gx NEXT_TELEMETRY_DISABLED 1
 set -gx ASTRO_TELEMETRY_DISABLED 1
 set -gx PI_TELEMETRY 0
-set -gx CBM_LOG_LEVEL error
-set -gx CBM_INDEX_LOG 0
 
 # ------------------------------------------------------------------------------
 # ALIASES (Interactive only)
@@ -78,14 +76,4 @@ if status is-interactive
     alias gp='git push'
     alias gl='git log --oneline --graph --decorate --all'
     alias node='node --no-warnings'
-
-    # Modern CLI tools in interactive sessions
-    if type -q bfs
-        alias find='bfs'
-    end
-    if type -q ugrep
-        alias grep='ugrep'
-        alias egrep='ugrep -E'
-        alias fgrep='ugrep -F'
-    end
 end
