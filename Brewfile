@@ -10,8 +10,6 @@ brew "chezmoi"
 brew "jq"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.14"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Autoformat shell script source code
