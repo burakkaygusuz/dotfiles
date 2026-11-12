@@ -37,7 +37,8 @@
     "code-review@anthropic-plugin-directory": true,
     "claude-security@anthropic-plugin-directory": true,
     "code-simplifier@anthropic-plugin-directory": true,
-    "feature-dev@anthropic-plugin-directory": true
+    "feature-dev@anthropic-plugin-directory": true,
+    "typescript-lsp@claude-plugins-official": true
   },
   "effortLevel": "medium",
   "modelSettings": {

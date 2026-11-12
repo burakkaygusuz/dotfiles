@@ -28,6 +28,8 @@ brew "git-lfs"
 brew "shellcheck"
 # Fast, disk space efficient Node.js package manager
 brew "pnpm"
+# Language Server Protocol implementation for TypeScript wrapping tsserver
+brew "typescript-language-server"
 # Web browser focusing on privacy
 cask "brave-browser"
 # GPU-accelerated terminal emulator
