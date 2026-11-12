@@ -1,19 +1,14 @@
 # ------------------------------------------------------------------------------
-# PATH & SYSTEM ENVIRONMENT
+# SHARED ENVIRONMENT (see ~/.config/shell)
 # ------------------------------------------------------------------------------
 set -g fish_greeting
 
-# Locale Settings (UTF-8 for CLI tools; LANG sets the default for all categories)
-set -gx LANG en_US.UTF-8
-set -gx LC_CTYPE en_US.UTF-8
+source ~/.config/shell/env.sh
 
 # Homebrew initialization (Apple Silicon)
 if test -x /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv fish | source
 end
-
-# PNPM Configuration
-set -gx PNPM_HOME "$HOME/Library/pnpm"
 
 # Canonical PATH hierarchy (.local/bin > pnpm > homebrew > system)
 fish_add_path -g -P -p $HOME/.local/bin $PNPM_HOME /opt/homebrew/opt/python@3.14/libexec/bin
@@ -48,28 +43,8 @@ if status is-interactive
 end
 
 # ------------------------------------------------------------------------------
-# PRIVACY & TELEMETRY (Opt-out)
-# ------------------------------------------------------------------------------
-set -gx SHELL_SESSIONS_DISABLE 1
-set -gx PYTHON_HISTORY /dev/null
-set -gx PYTHONSTARTUP /dev/null
-set -gx VSCODE_CLI_TELEMETRY_OPTOUT 1
-set -gx CLAUDE_CODE_ENABLE_TELEMETRY 0
-set -gx DISABLE_TELEMETRY 1
-set -gx NEXT_TELEMETRY_DISABLED 1
-set -gx ASTRO_TELEMETRY_DISABLED 1
-set -gx PI_TELEMETRY 0
-
-# ------------------------------------------------------------------------------
 # ALIASES (Interactive only)
 # ------------------------------------------------------------------------------
 if status is-interactive
-    alias ..='cd ..'
-    alias ll='ls -lahG'
-    alias gs='git status'
-    alias ga='git add'
-    alias gc='git commit'
-    alias gp='git push'
-    alias gl='git log --oneline --graph --decorate --all'
-    alias node='node --no-warnings'
+    source ~/.config/shell/aliases.sh
 end

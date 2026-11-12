@@ -33,7 +33,7 @@ jobs:
 
       - name: Validate zsh and fish syntax
         run: |
-          zsh -n home/dot_zshrc
+          zsh -n home/dot_zshrc home/dot_zshenv home/dot_config/shell/env.sh home/dot_config/shell/aliases.sh
           fish -n home/dot_config/fish/config.fish
           fish_indent --check home/dot_config/fish/config.fish
 

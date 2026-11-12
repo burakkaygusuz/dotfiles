@@ -7,7 +7,7 @@ Professional, minimalist, and high-performance development environment for Apple
 This repository contains my personal configuration files for a streamlined developer experience.
 
 - **Fish Shell**: Canonical daily-driver interactive login shell with auto-suggestions.
-- **Zsh**: Fully configured native macOS fallback shell (`.zshrc`).
+- **Zsh**: Second shell, configured with the same environment and aliases as fish (`.zshenv`, `.zshrc`).
 - **Starship**: Lightning-fast, minimalist, and context-aware prompt.
 - **Ghostty**: High-performance GPU-accelerated terminal emulator.
 - **Git**: Advanced global configuration with professional defaults.
