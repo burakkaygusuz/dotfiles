@@ -19,7 +19,7 @@ jobs:
       - name: Run shellcheck
         run: |
           find . -name "*.sh" -print0 | xargs -0 shellcheck
-          shellcheck -s bash dot_claude/modify_settings.json
+          shellcheck -s bash home/dot_claude/modify_settings.json
 
   test-macos:
     runs-on: macos-latest
@@ -34,9 +34,9 @@ jobs:
       - name: Validate shell syntax (bash, zsh, fish)
         run: |
           bash -n ssh/setup-github-ssh.sh
-          zsh -n dot_zshrc
-          fish -n dot_config/fish/config.fish
-          fish_indent --check dot_config/fish/config.fish
+          zsh -n home/dot_zshrc
+          fish -n home/dot_config/fish/config.fish
+          fish_indent --check home/dot_config/fish/config.fish
 
       - name: Check Brewfile parses
         run: |
@@ -44,7 +44,7 @@ jobs:
 
       - name: Smoke test statusline
         run: |
-          out="$(echo '{"model":{"display_name":"Claude Test"}}' | bash dot_claude/executable_statusline.sh)"
+          out="$(echo '{"model":{"display_name":"Claude Test"}}' | bash home/dot_claude/executable_statusline.sh)"
           echo "$out"
           test -n "$out"
           grep -q "Claude Test" <<<"$out"
