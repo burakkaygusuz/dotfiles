@@ -11,7 +11,7 @@ This repository contains my personal configuration files for a streamlined devel
 - **Starship**: Lightning-fast, minimalist, and context-aware prompt.
 - **Ghostty**: High-performance GPU-accelerated terminal emulator.
 - **Git**: Advanced global configuration with professional defaults.
-- **Claude Code**: Status line showing model, token counts, cost in USD, context usage, rate limits and the git branch (`~/.claude/statusline.sh`, requires `jq`). Only the `statusLine` key of `~/.claude/settings.json` is managed.
+- **Claude Code**: Status line showing model, token counts, cost in USD, context usage, rate limits and the git branch (`~/.claude/statusline.sh`, requires `jq`). `~/.claude/settings.json` and `~/.claude/CLAUDE.md` are managed. Claude Code edits `settings.json` itself; save those edits with `chezmoi re-add ~/.claude/settings.json`.
 - **VS Code**: Optimized `settings.json` focused on productivity and clean UI.
 - **Brewfile**: Automated management of all macOS applications and CLI tools.
 - **Chezmoi**: Modern, secure, and declarative dotfiles management. Source files live in `home/`.
