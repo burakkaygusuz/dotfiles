@@ -65,28 +65,31 @@ After the values are in the Keychain and the apply works, delete `~/.secrets.env
 ### 5. Bootstrap GitHub SSH (Optional)
 
 The SSH bootstrap is intentionally separate from the apply step.
-It can create an `ed25519` key if needed, add a managed GitHub host block via `~/.ssh/config.d/github-dotfiles.conf`, and load the key into the macOS keychain without overwriting your existing SSH config.
-The script requires an explicit `--email` argument for the SSH key label.
+It creates an `ed25519` key if needed, loads it into the macOS keychain, and uploads it to GitHub for authentication and signing.
+The script reads the email from `git config --global user.email`, so run `chezmoi apply` first.
 
 ```bash
-~/dotfiles/ssh/setup-github-ssh.sh --email you@example.com
+~/dotfiles/ssh/setup-github-ssh.sh
 ```
 
-After the script completes:
+The script logs you in to `gh` (browser flow) if needed, and adds the `admin:public_key` and `admin:ssh_signing_key` scopes. It is safe to re-run: keys GitHub already has are skipped.
+
+Then apply again, so Chezmoi writes `~/.ssh/config`, `~/.ssh/allowed_signers` and the git signing settings:
 
 ```bash
-# Copy the public key printed by the script (or default ~/.ssh/id_ed25519.pub):
-pbcopy < ~/.ssh/id_ed25519.pub
-
-# Test the connection:
-ssh -T git@github.com
+chezmoi apply
 ```
 
-If you already have custom `Host github.com` rules in `~/.ssh/config`, review them after running the script. The bootstrap inserts its managed include first (with `IdentitiesOnly yes` for conflict-free multi-key setups), but conflicting host-specific SSH settings may still need manual cleanup. If any Host github.com rules remain, merge them carefully.
+Chezmoi owns `~/.ssh/config`. Put custom SSH rules in `home/private_dot_ssh/private_config`, not in the file on your machine.
 
-You still need to add the copied public key to your GitHub account (**Settings -> SSH and GPG Keys -> New SSH Key**, selecting **Authentication & Signing Key**) before SSH authentication and automatic commit signing verification will work.
+Test the connection:
 
-Git commit signing is configured out of the box using native SSH signing (`gpg.format = ssh`), providing verified commit badges on GitHub without requiring GPG or GPG agent dependencies. The bootstrap script also writes `~/.ssh/allowed_signers`, which local `git log --show-signature` verification needs.
+```bash
+git ls-remote git@github.com:burakkaygusuz/dotfiles HEAD
+```
+
+Git commit signing uses native SSH signing (`gpg.format = ssh`), providing verified commit badges on GitHub without GPG.
+Local `git log --show-signature` verification uses `~/.ssh/allowed_signers`.
 
 ### 6. Restart and Verify
 
