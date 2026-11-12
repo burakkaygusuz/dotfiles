@@ -43,10 +43,12 @@ jobs:
 
       - name: Smoke test statusline
         run: |
-          out="$(echo '{"model":{"display_name":"Claude Test"}}' | bash home/dot_claude/executable_statusline.sh)"
+          out="$(echo '{"model":{"display_name":"Claude Test"}}' | COLUMNS=100 bash home/dot_claude/executable_statusline.sh)"
           echo "$out"
-          test -n "$out"
           grep -q "Claude Test" <<<"$out"
+          # Branch is right-aligned: visible width must be COLUMNS minus the 2-col margin.
+          plain="$(printf '%s' "$out" | sed $'s/\x1b\\[[0-9;]*m//g')"
+          test "$(jq -Rr length <<<"$plain")" -eq 98
 
       - name: Shellcheck templated scripts
         run: |
