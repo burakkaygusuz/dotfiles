@@ -102,7 +102,7 @@ Local `git log --show-signature` verification uses `~/.ssh/allowed_signers`.
 After the steps above:
 
 - Restart your terminal session so the default shell and prompt changes are applied cleanly.
-- Open VS Code again if you want the updated terminal/profile settings to take effect.
+- Open VS Code again if you want the updated terminal settings to take effect.
 - If the apply prompted you for a password to change the shell, ensure it succeeded.
 
 ## 📦 Maintenance

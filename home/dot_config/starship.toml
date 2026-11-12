@@ -1,5 +1,3 @@
-scan_timeout = 30
-command_timeout = 500
 
 format = """$os$directory$character"""
 right_format = """$all"""

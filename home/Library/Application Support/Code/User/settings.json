@@ -1,6 +1,6 @@
 {
   // --- Font & Editor Appearance ---
-  "editor.fontFamily": "'CommitMono Nerd Font Mono','FiraCode Nerd Font Mono', 'GeistMono Nerd Font Mono','MesloLGS Nerd Font Mono', monospace",
+  "editor.fontFamily": "'CommitMono Nerd Font Mono', monospace",
   "editor.fontSize": 14,
   "editor.lineHeight": 1.6,
   "editor.letterSpacing": -0.4,
@@ -50,7 +50,7 @@
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
   // --- Terminal ---
-  "terminal.integrated.fontFamily": "'MesloLGS Nerd Font Mono', 'FiraCode Nerd Font Mono', monospace",
+  "terminal.integrated.fontFamily": "'MesloLGS Nerd Font Mono', monospace",
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.fontWeight": "normal",
   "terminal.integrated.fontWeightBold": "bold",
@@ -62,27 +62,6 @@
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.defaultProfile.osx": "fish",
-  "terminal.integrated.profiles.osx": {
-    "fish": {
-      "path": "/opt/homebrew/bin/fish",
-      "args": [
-        "-l"
-      ]
-    },
-    "zsh": {
-      "path": "/bin/zsh",
-      "args": [
-        "-l"
-      ]
-    },
-    "bash": {
-      "path": "/bin/bash",
-      "args": [
-        "-l"
-      ],
-      "icon": "terminal-bash"
-    }
-  },
   "terminal.integrated.allowedLinkSchemes": [
     "file",
     "http",

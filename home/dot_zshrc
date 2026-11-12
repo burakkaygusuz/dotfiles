@@ -28,17 +28,12 @@ setopt AUTO_CD
 
 # Completion (cached — rebuilds once per day)
 autoload -Uz compinit
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+zcompdump_stale=(~/.zcompdump(N.mh+24))
+if (( ${#zcompdump_stale} )) || [[ ! -e ~/.zcompdump ]]; then
     compinit
 else
     compinit -C
 fi
-
-# Window title (current directory basename)
-function set_win_title() {
-    echo -ne "\033]0; ${PWD:t} \007"
-}
-precmd_functions+=(set_win_title)
 
 # Prompt
 if command -v starship >/dev/null 2>&1; then
