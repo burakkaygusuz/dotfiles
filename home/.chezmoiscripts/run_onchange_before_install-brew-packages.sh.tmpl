@@ -1,0 +1,5 @@
+#!/bin/bash
+# Brewfile sha256: {{ include (joinPath .chezmoi.workingTree "Brewfile") | sha256sum }}
+# The hash above makes chezmoi rerun this script only when the Brewfile changes.
+set -euo pipefail
+/opt/homebrew/bin/brew bundle --file={{ joinPath .chezmoi.workingTree "Brewfile" | quote }}

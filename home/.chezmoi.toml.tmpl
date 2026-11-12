@@ -1,0 +1,4 @@
+{{- if or (ne .chezmoi.os "darwin") (ne .chezmoi.arch "arm64") -}}
+{{- fail "This repository supports Apple Silicon macOS only." -}}
+{{- end -}}
+sourceDir = {{ .chezmoi.workingTree | quote }}

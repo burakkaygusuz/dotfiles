@@ -18,7 +18,7 @@ jobs:
 
       - name: Run shellcheck
         run: |
-          find . -name "*.sh" -print0 | xargs -0 shellcheck
+          git ls-files -z '*.sh' | xargs -0 shellcheck
           shellcheck -s bash home/dot_claude/modify_settings.json
 
   test-macos:
@@ -29,11 +29,10 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install chezmoi fish jq
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install chezmoi fish jq shellcheck
 
-      - name: Validate shell syntax (bash, zsh, fish)
+      - name: Validate zsh and fish syntax
         run: |
-          bash -n ssh/setup-github-ssh.sh
           zsh -n home/dot_zshrc
           fish -n home/dot_config/fish/config.fish
           fish_indent --check home/dot_config/fish/config.fish
@@ -49,32 +48,24 @@ jobs:
           test -n "$out"
           grep -q "Claude Test" <<<"$out"
 
-      - name: Apply dotfiles
+      - name: Shellcheck templated scripts
         run: |
-          make apply
+          tmp="$RUNNER_TEMP/chezmoi-test"
+          rendered="$tmp/rendered"
+          mkdir -p "$rendered"
+          chezmoi init --source "$GITHUB_WORKSPACE" --config "$tmp/chezmoi.toml" --persistent-state "$tmp/state.boltdb"
+          for f in home/.chezmoiscripts/*.tmpl; do
+            chezmoi execute-template --source "$GITHUB_WORKSPACE" --config "$tmp/chezmoi.toml" \
+              <"$f" >"$rendered/$(basename "${f%.tmpl}")"
+          done
+          shellcheck "$rendered"/run_*.sh
 
-      - name: Verify idempotency with chezmoi
+      - name: Apply and verify dotfiles into a temp destination
         run: |
-          chezmoi verify --source "$GITHUB_WORKSPACE"
-
-      - name: Verify installed dotfiles existence
-        run: |
-          test -f "$HOME/.zshrc"
-          test -f "$HOME/.gitconfig"
-          test -f "$HOME/.gitignore_global"
-          test -f "$HOME/.config/starship.toml"
-          test -f "$HOME/.config/fish/config.fish"
-
-      - name: Verify no unmanaged files leaked into HOME
-        run: |
-          ! test -e "$HOME/ssh"
-          ! test -e "$HOME/.github"
-          ! test -e "$HOME/LICENSE"
-          ! test -e "$HOME/README.md"
-          ! test -e "$HOME/Makefile"
-          ! test -e "$HOME/Brewfile"
-
-      - name: Verify git and SSH configuration parsing
-        run: |
-          git config --list >/dev/null
-          ssh -G git@github.com | grep -E '^(hostname|user|identityfile|identitiesonly)' || true
+          tmp="$RUNNER_TEMP/chezmoi-test"
+          mkdir -p "$tmp/dest"
+          cz=(chezmoi --source "$GITHUB_WORKSPACE" --destination "$tmp/dest" \
+            --config "$tmp/chezmoi.toml" --persistent-state "$tmp/state.boltdb")
+          "${cz[@]}" apply --exclude=scripts
+          "${cz[@]}" verify --exclude=scripts
+          git config --file "$tmp/dest/.gitconfig" --list >/dev/null

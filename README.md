@@ -19,39 +19,44 @@ This repository contains my personal configuration files for a streamlined devel
 
 ## 🛠️ Installation
 
-### 1. Clone the Repository
+### 1. Install Homebrew and Chezmoi
+
+This repository targets Apple Silicon Macs only and assumes Homebrew is installed in `/opt/homebrew`.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install chezmoi
+```
+
+### 2. Clone the Repository
 
 ```bash
 git clone https://github.com/burakkaygusuz/dotfiles.git ~/dotfiles
-cd ~/dotfiles
 ```
 
-### 2. Run the Core Bootstrap
+### 3. Apply the Dotfiles
 
 ```bash
-make all
+chezmoi init --apply --source ~/dotfiles
 ```
 
-`make all` installs Homebrew packages (including Nerd Fonts), applies dotfiles via Chezmoi, and configures `fish` as the default login shell.
-
-You can also inspect changes before applying or run individual targets:
-
-- `make diff` — Preview differences between this repo and your `$HOME` files.
-- `make apply` — Apply dotfiles safely (Chezmoi prompts if a local file was modified).
-- `make apply-force` — Force overwrite local changes with repo versions.
-- `make brew` / `make shell` — Run package install or shell setup independently.
-
-This repository targets Apple Silicon Macs only and assumes Homebrew is installed in `/opt/homebrew`.
+The apply step installs Homebrew packages from the Brewfile (including Nerd Fonts) and sets `fish` as the default login shell.
 If `fish` is not registered in `/etc/shells`, you will be prompted for your password to add it.
 
-### 3. Bootstrap GitHub SSH (Optional)
+Inspect or re-apply changes later with:
 
-The SSH bootstrap is intentionally separate from `make all`.
+- `chezmoi diff` — Preview differences between this repo and your `$HOME` files.
+- `chezmoi apply` — Apply dotfiles (Chezmoi prompts if a local file was modified).
+- `chezmoi apply --force` — Force overwrite local changes with repo versions.
+
+### 4. Bootstrap GitHub SSH (Optional)
+
+The SSH bootstrap is intentionally separate from the apply step.
 It can create an `ed25519` key if needed, add a managed GitHub host block via `~/.ssh/config.d/github-dotfiles.conf`, and load the key into the macOS keychain without overwriting your existing SSH config.
 The script requires an explicit `--email` argument for the SSH key label.
 
 ```bash
-./ssh/setup-github-ssh.sh --email you@example.com
+~/dotfiles/ssh/setup-github-ssh.sh --email you@example.com
 ```
 
 After the script completes:
@@ -60,8 +65,8 @@ After the script completes:
 # Copy the public key printed by the script (or default ~/.ssh/id_ed25519.pub):
 pbcopy < ~/.ssh/id_ed25519.pub
 
-# Test connection and effective config:
-make verify-ssh
+# Test the connection:
+ssh -T git@github.com
 ```
 
 If you already have custom `Host github.com` rules in `~/.ssh/config`, review them after running the script. The bootstrap inserts its managed include first (with `IdentitiesOnly yes` for conflict-free multi-key setups), but conflicting host-specific SSH settings may still need manual cleanup. If any Host github.com rules remain, merge them carefully.
@@ -70,13 +75,13 @@ You still need to add the copied public key to your GitHub account (**Settings -
 
 Git commit signing is configured out of the box using native SSH signing (`gpg.format = ssh`), providing verified commit badges on GitHub without requiring GPG or GPG agent dependencies. The bootstrap script also writes `~/.ssh/allowed_signers`, which local `git log --show-signature` verification needs.
 
-### 4. Restart and Verify
+### 5. Restart and Verify
 
 After the steps above:
 
 - Restart your terminal session so the default shell and prompt changes are applied cleanly.
 - Open VS Code again if you want the updated terminal/profile settings to take effect.
-- If `make shell` prompted you for a password to change the shell, ensure it succeeded.
+- If the apply prompted you for a password to change the shell, ensure it succeeded.
 
 ## 📦 Maintenance
 
@@ -108,5 +113,3 @@ git add .
 git commit -m "chore(config): update dotfiles"
 git push
 ```
-
----
