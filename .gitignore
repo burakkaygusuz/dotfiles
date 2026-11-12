@@ -1,5 +1,6 @@
 .DS_Store
 *.env
+!home/dot_homebrew/brew.env
 *.secret
 *.pem
 *.key
