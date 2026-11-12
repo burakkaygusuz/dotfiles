@@ -53,7 +53,8 @@ jobs:
           tmp="$RUNNER_TEMP/chezmoi-test"
           rendered="$tmp/rendered"
           mkdir -p "$rendered"
-          chezmoi init --source "$GITHUB_WORKSPACE" --config "$tmp/chezmoi.toml" --persistent-state "$tmp/state.boltdb"
+          chezmoi init --source "$GITHUB_WORKSPACE" --config "$tmp/chezmoi.toml" --persistent-state "$tmp/state.boltdb" \
+            --promptString "Git email (also the SSH key label)=ci@example.com"
           for f in home/.chezmoiscripts/*.tmpl; do
             chezmoi execute-template --source "$GITHUB_WORKSPACE" --config "$tmp/chezmoi.toml" \
               <"$f" >"$rendered/$(basename "${f%.tmpl}")"

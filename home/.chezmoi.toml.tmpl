@@ -2,3 +2,6 @@
 {{- fail "This repository supports Apple Silicon macOS only." -}}
 {{- end -}}
 sourceDir = {{ .chezmoi.workingTree | quote }}
+
+[data]
+    email = {{ promptStringOnce . "email" "Git email (also the SSH key label)" | quote }}

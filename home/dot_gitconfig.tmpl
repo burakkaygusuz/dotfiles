@@ -1,9 +1,9 @@
 [user]
 	name = Burak Kaygusuz
-
-# Keep private identity details out of the public repo.
-[include]
-	path = ~/.gitconfig.local
+	email = {{ .email }}
+{{- if stat (joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub") }}
+	signingkey = {{ joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub" }}
+{{- end }}
 
 [init]
 	defaultBranch = main
@@ -40,6 +40,14 @@
 	ui = auto
 [gpg]
 	format = ssh
+{{- if stat (joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub") }}
+[gpg "ssh"]
+	allowedSignersFile = {{ joinPath .chezmoi.homeDir ".ssh/allowed_signers" }}
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+{{- end }}
 [column]
 	ui = auto
 [branch]
@@ -49,3 +57,8 @@
 [rerere]
 	enabled = true
 	autoUpdate = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

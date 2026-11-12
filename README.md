@@ -40,6 +40,7 @@ git clone https://github.com/burakkaygusuz/dotfiles.git ~/dotfiles
 chezmoi init --apply --source ~/dotfiles
 ```
 
+Chezmoi asks for your Git email.
 The apply step installs Homebrew packages from the Brewfile (including Nerd Fonts) and sets `fish` as the default login shell.
 If `fish` is not registered in `/etc/shells`, you will be prompted for your password to add it.
 
