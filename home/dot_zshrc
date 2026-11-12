@@ -16,35 +16,6 @@ path=(
 export PATH
 
 # ------------------------------------------------------------------------------
-# SHELL INTEGRATIONS & SECRETS
-# ------------------------------------------------------------------------------
-# Load local secrets (key=value parser — no arbitrary code execution)
-if [ -f ~/.secrets.env ]; then
-    () {
-        local line key val
-        while IFS= read -r line || [ -n "$line" ]; do
-            # skip comments and blank lines
-            [[ "$line" =~ ^[[:space:]]*# ]] && continue
-            [[ -z "${line// }" ]] && continue
-            # strip optional leading "export "
-            line="${line#export }"
-            # extract key and value
-            key="${line%%=*}"
-            key="${key// }"
-            val="${line#*=}"
-            val="${val#"${val%%[! ]*}"}"
-            val="${val%"${val##*[! ]}"}"
-            # only export valid identifiers
-            if [[ "$key" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
-                val="${val#\'}"; val="${val%\'}"
-                val="${val#\"}"; val="${val%\"}"
-                export "$key=$val"
-            fi
-        done < ~/.secrets.env
-    }
-fi
-
-# ------------------------------------------------------------------------------
 # SHELL BEHAVIOR & CONFIGURATION
 # ------------------------------------------------------------------------------
 HISTFILE=~/.zsh_history

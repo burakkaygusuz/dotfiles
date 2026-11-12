@@ -40,7 +40,7 @@ git clone https://github.com/burakkaygusuz/dotfiles.git ~/dotfiles
 chezmoi init --apply --source ~/dotfiles
 ```
 
-Chezmoi asks for your Git email.
+Chezmoi asks for your Git email and for the names of secrets to read from the Keychain (space-separated, may be empty).
 The apply step installs Homebrew packages from the Brewfile (including Nerd Fonts) and sets `fish` as the default login shell.
 If `fish` is not registered in `/etc/shells`, you will be prompted for your password to add it.
 
@@ -50,7 +50,19 @@ Inspect or re-apply changes later with:
 - `chezmoi apply` — Apply dotfiles (Chezmoi prompts if a local file was modified).
 - `chezmoi apply --force` — Force overwrite local changes with repo versions.
 
-### 4. Bootstrap GitHub SSH (Optional)
+### 4. Secrets (Optional)
+
+Secrets live in the macOS Keychain under the service `dotfiles-env`.
+Each name you list at `chezmoi init` is exported to both shells from `~/.config/shell/secrets.sh`.
+
+```bash
+chezmoi secret keyring set --service=dotfiles-env --user=NAME
+```
+
+To add or change names, run `chezmoi init --data=false --source ~/dotfiles`, answer the prompts again, then run `chezmoi apply`.
+After the values are in the Keychain and the apply works, delete `~/.secrets.env`.
+
+### 5. Bootstrap GitHub SSH (Optional)
 
 The SSH bootstrap is intentionally separate from the apply step.
 It can create an `ed25519` key if needed, add a managed GitHub host block via `~/.ssh/config.d/github-dotfiles.conf`, and load the key into the macOS keychain without overwriting your existing SSH config.
@@ -76,7 +88,7 @@ You still need to add the copied public key to your GitHub account (**Settings -
 
 Git commit signing is configured out of the box using native SSH signing (`gpg.format = ssh`), providing verified commit badges on GitHub without requiring GPG or GPG agent dependencies. The bootstrap script also writes `~/.ssh/allowed_signers`, which local `git log --show-signature` verification needs.
 
-### 5. Restart and Verify
+### 6. Restart and Verify
 
 After the steps above:
 

@@ -1,1 +1,2 @@
 source ~/.config/shell/env.sh
+[ -f ~/.config/shell/secrets.sh ] && source ~/.config/shell/secrets.sh

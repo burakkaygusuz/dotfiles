@@ -5,3 +5,4 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
 
 [data]
     email = {{ promptStringOnce . "email" "Git email (also the SSH key label)" | quote }}
+    secretNames = {{ promptStringOnce . "secretNames" "Keychain secret names, space-separated (may be empty)" | quote }}
