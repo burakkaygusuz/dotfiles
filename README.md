@@ -50,12 +50,6 @@ Inspect or re-apply changes later with:
 - `chezmoi apply` — Apply dotfiles (Chezmoi prompts if a local file was modified).
 - `chezmoi apply --force` — Force overwrite local changes with repo versions.
 
-Python is managed by uv:
-
-```bash
-uv python install --default
-```
-
 ### 4. Secrets (Optional)
 
 Secrets live in the macOS Keychain under the service `dotfiles-env`.

@@ -13,8 +13,8 @@ if test -x /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv fish | source
 end
 
-# Canonical PATH hierarchy (.local/bin > pnpm > homebrew > system)
-fish_add_path -g -P -p $HOME/.local/bin $PNPM_HOME
+# Canonical PATH hierarchy (.local/bin > pnpm > python > homebrew > system)
+fish_add_path -g -P -p $HOME/.local/bin $PNPM_HOME /opt/homebrew/opt/python@3.15/libexec/bin
 
 # Starship Prompt
 function starship_transient_prompt_func
