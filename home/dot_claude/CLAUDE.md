@@ -14,12 +14,12 @@
 ## Architecture & Design
 
 - Choose the simplest design that meets the requirements.
-- First, build a minimal version that works. If the current version does not pass its checks, do not add a feature.
+- First, build a minimal version that works. If the current version does not pass its checks, such as tests or type checks, do not add a feature.
 - Do not add temporary solutions or speculative abstractions.
 - Do not add error checks for conditions that cannot occur. Invalid input from users, files, or networks can always occur. Keep the error checks that prevent data loss.
 - Do not add compatibility layers for removed code.
 - Do not break persistent data formats or database schemas.
-- Before you write custom code, use established libraries and the dependencies that the project has.
+- Before you write custom code, use the standard library and the dependencies that the project has. If the task needs more than a few lines of code, use an established library.
 - Before you decide that a capability is not available, check the library documentation and types. Your information about a library can be out of date.
 
 ## Surgical Changes
@@ -42,9 +42,7 @@
 - Before a text search, if the LSP tool is available, use it to find definitions and references.
 - Run test and build commands with quiet flags, such as `-q`, to keep the output short.
 
-## Verification & Git
+## Git
 
-- Before you start a task that has more than one step, state a short plan. For each step, name the check that shows that the step is correct.
-- Before you finish a task, run a test or type check that exercises the change. A syntax check is not enough. A task that you did not check can fail without a warning.
 - If the user does not ask for a commit, do not commit.
 - Use Conventional Commits with a scope, for example `fix(parser): handle empty input`.
