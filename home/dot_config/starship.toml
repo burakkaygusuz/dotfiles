@@ -11,6 +11,7 @@ style = "bold white"
 
 [os.symbols]
 Macos = "󰀵 "
+Ubuntu = " "
 
 [directory]
 truncation_length = 1
