@@ -1,0 +1,7 @@
+#!/bin/bash
+# Chezmoi modify script: sets only mcpServers.exa in ~/.claude.json (Claude Code state), keeping every other key.
+# -j: Claude Code writes this file without a trailing newline; match it so chezmoi diff stays clean.
+current=$(cat)
+[ -n "$current" ] || current='{}'
+# shellcheck disable=SC2016 # ${EXA_API_KEY} is literal; Claude Code expands it at runtime, so the key never lands in the file.
+jq -j '.mcpServers.exa = {type: "http", url: "https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa", headers: {Authorization: "Bearer ${EXA_API_KEY}"}}' <<<"$current"

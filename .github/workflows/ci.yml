@@ -19,6 +19,7 @@ jobs:
       - name: Run shellcheck
         run: |
           git ls-files -z '*.sh' | xargs -0 shellcheck
+          shellcheck -s bash home/modify_private_dot_claude.json
           jq empty home/dot_claude/private_settings.json
 
   test-macos:

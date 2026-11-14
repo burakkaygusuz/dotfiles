@@ -11,7 +11,7 @@ This repository contains my personal configuration files for a streamlined devel
 - **Starship**: Lightning-fast, minimalist, and context-aware prompt.
 - **Ghostty**: High-performance GPU-accelerated terminal emulator.
 - **Git**: Advanced global configuration with professional defaults.
-- **Claude Code**: Status line showing model, token counts, cost in USD, context usage, rate limits and the git branch (`~/.claude/statusline.sh`, requires `jq`). `~/.claude/settings.json`, `~/.claude/CLAUDE.md` and the agents in `~/.claude/agents/` are managed. Claude Code edits `settings.json` itself; save those edits with `chezmoi re-add ~/.claude/settings.json`.
+- **Claude Code**: Status line showing model, token counts, cost in USD, context usage, rate limits and the git branch (`~/.claude/statusline.sh`, requires `jq`). `~/.claude/settings.json`, `~/.claude/CLAUDE.md` and the agents in `~/.claude/agents/` are managed. Claude Code edits `settings.json` itself; save those edits with `chezmoi re-add ~/.claude/settings.json`. The Exa MCP server is set in `~/.claude.json` (only `mcpServers.exa` is managed); it reads `EXA_API_KEY` from the environment, so list `EXA_API_KEY` as a Keychain secret (see Secrets).
 - **VS Code**: Optimized `settings.json` focused on productivity and clean UI.
 - **Brewfile**: Automated management of all macOS applications and CLI tools.
 - **Chezmoi**: Modern, secure, and declarative dotfiles management. Source files live in `home/`.
