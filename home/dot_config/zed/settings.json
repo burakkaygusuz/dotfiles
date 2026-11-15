@@ -88,6 +88,21 @@
       "model": "deepseek/deepseek-v4.1-flash-1017"
     }
   },
+  "language_models": {
+    "open_router": {
+      "api_url": "https://openrouter.ai/api/v1",
+      "available_models": [
+        {
+          "name": "deepseek/deepseek-v4.1-flash-1017",
+          "display_name": "DeepSeek V4.1 Flash 1017",
+          "max_tokens": 128000,
+          "max_output_tokens": 8192,
+          "supports_tools": true,
+          "supports_images": false
+        }
+      ]
+    }
+  },
   "auto_install_extensions": {
     "astro": true,
     "dockerfile": true,
