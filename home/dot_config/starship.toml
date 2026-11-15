@@ -59,7 +59,7 @@ format = 'via [$symbol($version )]($style)'
 style = 'bold 201'
 
 [python]
-symbol = '󰌠 '
+symbol = ' '
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 style = 'bold yellow'
 
