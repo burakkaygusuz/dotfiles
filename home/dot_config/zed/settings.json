@@ -54,6 +54,40 @@
       "enabled": true
     }
   },
+  "git_panel": {
+    "dock": "right",
+    "tree_view": true,
+    "file_icons": true,
+    "show_count_badge": true,
+    "diff_stats": true
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+      "delay_ms": 300,
+      "show_commit_summary": true
+    },
+    "git_gutter": "tracked_files",
+    "gutter_debounce": 50
+  },
+  "diff_view_style": "split",
+  "word_diff_enabled": true,
+  "show_completions_on_input": true,
+  "show_completion_documentation": true,
+  "completion_menu_item_kind": "symbol",
+  "completion_detail_alignment": "right",
+  "completions": {
+    "lsp": true,
+    "words": "fallback",
+    "words_min_length": 3,
+    "lsp_insert_mode": "replace_suffix"
+  },
+  "agent": {
+    "default_model": {
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash-1017"
+    }
+  },
   "auto_install_extensions": {
     "astro": true,
     "dockerfile": true,
@@ -100,8 +134,9 @@
     },
     "Python": {
       "language_servers": [
-        "pyright",
+        "ty",
         "ruff",
+        "!pyright",
         "!basedpyright"
       ],
       "code_actions_on_format": {
@@ -126,6 +161,14 @@
     }
   },
   "lsp": {
+    "ty": {
+      "binary": {
+        "path": "/Users/burak/.local/bin/ty",
+        "arguments": [
+          "server"
+        ]
+      }
+    },
     "pyright": {
       "binary": {
         "path": "/opt/homebrew/bin/pyright-langserver",
