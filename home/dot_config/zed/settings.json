@@ -1,0 +1,169 @@
+{
+  "auto_update": false,
+  "icon_theme": "Material Icon Theme",
+  "vim_mode": false,
+  "ui_font_size": 15,
+  "buffer_font_family": "GeistMono Nerd Font Mono",
+  "buffer_font_fallbacks": [
+    "CommitMono Nerd Font Mono",
+    "MesloLGS Nerd Font Mono",
+    "FiraCode Nerd Font Mono"
+  ],
+  "buffer_font_size": 14,
+  "buffer_font_weight": 400,
+  "buffer_line_height": "comfortable",
+  "buffer_font_features": {
+    "calt": true
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "One Dark"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "autosave": "on_focus_change",
+  "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "colorize_brackets": true,
+  "show_whitespaces": "selection",
+  "linked_edits": true,
+  "sticky_scroll": {
+    "enabled": true
+  },
+  "max_tabs": 10,
+  "project_panel": {
+    "indent_size": 16,
+    "indent_guides": {
+      "show": "always"
+    }
+  },
+  "indent_guides": {
+    "enabled": true
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "auto_install_extensions": {
+    "astro": true,
+    "dockerfile": true,
+    "html": true,
+    "material-icon-theme": true
+  },
+  "prettier": {
+    "allowed": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "printWidth": 100,
+    "semi": true
+  },
+  "languages": {
+    "JavaScript": {
+      "language_servers": [
+        "typescript-language-server",
+        "!vtsls",
+        "..."
+      ],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TypeScript": {
+      "language_servers": [
+        "typescript-language-server",
+        "!vtsls",
+        "..."
+      ],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TSX": {
+      "language_servers": [
+        "typescript-language-server",
+        "!vtsls",
+        "..."
+      ],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "Python": {
+      "language_servers": [
+        "pyright",
+        "ruff",
+        "!basedpyright"
+      ],
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true
+      },
+      "formatter": {
+        "language_server": {
+          "name": "ruff"
+        }
+      }
+    },
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "/opt/homebrew/bin/shfmt",
+          "arguments": [
+            "-i",
+            "2"
+          ]
+        }
+      }
+    }
+  },
+  "lsp": {
+    "pyright": {
+      "binary": {
+        "path": "/opt/homebrew/bin/pyright-langserver",
+        "arguments": [
+          "--stdio"
+        ]
+      }
+    },
+    "typescript-language-server": {
+      "binary": {
+        "path": "/opt/homebrew/bin/typescript-language-server",
+        "arguments": [
+          "--stdio"
+        ]
+      }
+    },
+    "clangd": {
+      "binary": {
+        "path": "/usr/bin/clangd"
+      }
+    }
+  },
+  "terminal": {
+    "font_family": "MesloLGS Nerd Font Mono",
+    "font_fallbacks": [
+      "FiraCode Nerd Font Mono"
+    ],
+    "font_size": 13,
+    "line_height": {
+      "custom": 1.2
+    },
+    "shell": {
+      "with_arguments": {
+        "program": "/opt/homebrew/bin/fish",
+        "args": [
+          "-l"
+        ]
+      }
+    }
+  }
+}

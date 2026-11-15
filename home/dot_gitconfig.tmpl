@@ -9,7 +9,7 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = code --wait
+	editor = zed --wait
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	fsmonitor = true
 [pull]
@@ -22,18 +22,18 @@
 	autoSetupRemote = true
 	followTags = true
 [diff]
-	tool = vscode
+	tool = zed
 	algorithm = histogram
 	mnemonicPrefix = true
 	renames = true
 	colorMoved = default
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+[difftool "zed"]
+	cmd = zed --wait --diff $LOCAL $REMOTE
 [merge]
-	tool = vscode
+	tool = zed
 	conflictstyle = zdiff3
-[mergetool "vscode"]
-	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[mergetool "zed"]
+	cmd = zed --wait $MERGED
 [help]
 	autocorrect = prompt
 [color]

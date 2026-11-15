@@ -12,7 +12,7 @@ This repository contains my personal configuration files for a streamlined devel
 - **Ghostty**: High-performance GPU-accelerated terminal emulator.
 - **Git**: Advanced global configuration with professional defaults.
 - **Claude Code**: Status line showing model, token counts, cost in USD, context usage, rate limits and the git branch (`~/.claude/statusline.sh`, requires `jq`). `~/.claude/settings.json`, `~/.claude/CLAUDE.md` and the agents in `~/.claude/agents/` are managed. Claude Code edits `settings.json` itself; save those edits with `chezmoi re-add ~/.claude/settings.json`. The Exa MCP server is set in `~/.claude.json` (only `mcpServers.exa` is managed); it reads `EXA_API_KEY` from the environment, so list `EXA_API_KEY` as a Keychain secret (see Secrets).
-- **VS Code**: Optimized `settings.json` focused on productivity and clean UI.
+- **Zed**: High-performance code editor with declarative `settings.json` (LSP, Ruff, ESLint, Prettier and auto-installed extensions).
 - **Brewfile**: Automated management of all macOS applications and CLI tools.
 - **Chezmoi**: Modern, secure, and declarative dotfiles management. Source files live in `home/`.
 - **Nerd Fonts**: Curated developer fonts managed via Homebrew casks.
@@ -96,7 +96,7 @@ Local `git log --show-signature` verification uses `~/.ssh/allowed_signers`.
 After the steps above:
 
 - Restart your terminal session so the default shell and prompt changes are applied cleanly.
-- Open VS Code again if you want the updated terminal settings to take effect.
+- Restart Zed if you want the updated terminal and shell settings to take effect.
 - If the apply prompted you for a password to change the shell, ensure it succeeded.
 
 ## 📦 Maintenance
