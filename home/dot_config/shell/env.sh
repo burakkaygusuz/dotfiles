@@ -5,6 +5,12 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export PNPM_HOME="$HOME/Library/pnpm"
 
+# Homebrew settings
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_AUTO_UPDATE_SECS=86400
+export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=30
+export HOMEBREW_NO_ENV_HINTS=1
+
 # Telemetry opt-outs
 export SHELL_SESSIONS_DISABLE=1
 export PYTHON_HISTORY=/dev/null

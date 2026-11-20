@@ -1,5 +1,5 @@
 # Deduplicate PATH automatically in Zsh
-typeset -U path PATH
+typeset -U path PATH fpath FPATH
 
 # Homebrew initialization (Apple Silicon)
 if [ -x /opt/homebrew/bin/brew ]; then
