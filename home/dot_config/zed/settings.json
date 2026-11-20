@@ -86,7 +86,13 @@
     "default_model": {
       "provider": "openrouter",
       "model": "deepseek/deepseek-v4.1-flash-1017"
-    }
+    },
+    "commit_message_model": {
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "commit_message_instructions": "Use the Conventional Commits format: <type>(<scope>): <description>. You must include a scope. Use one of these types: feat, fix, docs, style, refactor, perf, test, build, ci, chore. Write the description in lowercase. Use the imperative mood. Do not put a period at the end.",
+    "commit_message_include_project_rules": true
   },
   "language_models": {
     "open_router": {
